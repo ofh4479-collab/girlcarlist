@@ -325,6 +325,19 @@
             const adminLink = document.getElementById('admin-link');
             const userInfo = document.getElementById('user-info');
             const authBtns = document.getElementById('auth-buttons');
+            
+            // --- 访问统计记录逻辑开始 ---
+            try {
+                await addDoc(collection(db, "analytics"), {
+                    timestamp: Date.now(),
+                    uid: user ? user.uid : "visitor",
+                    email: user ? user.email : "guest",
+                    path: window.location.pathname,
+                    userAgent: navigator.userAgent
+                });
+            } catch(e) { console.warn("Analytics failed", e); }
+            // --- 访问统计记录逻辑结束 ---
+
             if(user) {
                 userInfo.classList.remove('hidden'); authBtns.classList.add('hidden');
                 onSnapshot(doc(db, "users", user.uid), (uDoc) => {
