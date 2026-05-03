@@ -93,7 +93,6 @@
         .mini-vote { background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; min-width: 42px; }
         .mini-vote.active { border-color: var(--gold); color: var(--gold); }
         .admin-area-divider { background: #1a1a1a; color: var(--gold); font-size: 10px; font-weight: bold; text-align: center; padding: 4px 0; margin: 10px 0 5px 0; border-radius: 4px; border: 1px dashed #333; }
-        /* 拖拽上传样式 */
         #drop-area.drag-over { border: 2px dashed var(--gold); background: rgba(212, 175, 55, 0.05); }
     </style>
 </head>
@@ -101,9 +100,9 @@
 
     <script>
         const translations = {
-            en: { home: "HOME", welcome: "Welcome to MoiCarList", subtitle: "Your Trusted Choice", available: "✨ Featured Listings", allNations: "All Nations", allCups: "All Cups", allTypes: "All Types", newOnly: "NEW Only", hotOnly: "Hot Only", back: "← BACK", booking: "WHATSAPP BOOKING", hot: "HOT", total: "Total", ovn: "Overnight", searchPlaceholder: "Search name...", profile: "PROFILE", points: "Points", checkin: "Check In", alreadyCheckin: "Already Checked In", changeNameTitle: "Modify Name (100 pts)", insufficient: "Insufficient points!", reviewTitle: "Reviews & Experience", post: "POST REVIEW", noReview: "No reviews yet. Be the first!", clicks: "Clicks" },
-            cn: { home: "首页", welcome: "欢迎来到 MoiCarList", subtitle: "您值得信赖的选择", available: "✨ 精选展示", allNations: "所有国籍", allCups: "所有胸围", allTypes: "全部类型", newOnly: "NEW小姐", hotOnly: "人气小姐", back: "← 返回", booking: "WHATSAPP 预约", hot: "火热", total: "总计", ovn: "包夜", searchPlaceholder: "搜索名字...", profile: "个人中心", points: "积分", checkin: "每日签到", alreadyCheckin: "今日已签到", changeNameTitle: "修改名字 (消耗100积分)", insufficient: "积分不足！", reviewTitle: "用户真实评价", post: "发布评论", noReview: "暂无评价，快来抢沙发！", clicks: "查看次数" },
-            bm: { home: "UTAMA", welcome: "Selamat Datang", subtitle: "Pilihan Dipercayai", available: "✨ Pilihan Utama", allNations: "Semua Negara", allCups: "Semua Saiz", allTypes: "Semua Jenis", newOnly: "Pilihan Baru", hotOnly: "Pilihan Hangat", back: "← KEMBALI", booking: "TEMPAHAN WHATSAPP", hot: "HANGAT", total: "Jumlah", ovn: "Bermalam", searchPlaceholder: "Cari nama...", profile: "PROFIL", points: "Mata", checkin: "Daftar Masuk", alreadyCheckin: "Sudah Daftar", changeNameTitle: "Tukar Nama (100 mata)", insufficient: "Mata tidak cukup!", reviewTitle: "Ulasan Pengguna", post: "HANTAR ULASAN", noReview: "Tiada ulasan lagi.", clicks: "Klik" }
+            en: { home: "HOME", welcome: "Welcome to MoiCarList", subtitle: "Your Trusted Choice", available: "✨ Featured Listings", allNations: "All Nations", allCups: "All Cups", sortDefault: "Default (A-Z)", sortClicks: "Clicks (High to Low)", newOnly: "NEW Only", hotOnly: "Hot Only", back: "← BACK", booking: "WHATSAPP BOOKING", hot: "HOT", total: "Total", ovn: "Overnight", searchPlaceholder: "Search name...", profile: "PROFILE", points: "Points", checkin: "Check In", alreadyCheckin: "Already Checked In", changeNameTitle: "Modify Name (100 pts)", insufficient: "Insufficient points!", reviewTitle: "Reviews & Experience", post: "POST REVIEW", noReview: "No reviews yet. Be the first!", clicks: "Clicks" },
+            cn: { home: "首页", welcome: "欢迎来到 MoiCarList", subtitle: "您值得信赖的选择", available: "✨ 精选展示", allNations: "所有国籍", allCups: "所有胸围", sortDefault: "默认排序 (A-Z)", sortClicks: "点击量排序 (高到低)", newOnly: "NEW小姐", hotOnly: "人气小姐", back: "← 返回", booking: "WHATSAPP 预约", hot: "火热", total: "总计", ovn: "包夜", searchPlaceholder: "搜索名字...", profile: "个人中心", points: "积分", checkin: "每日签到", alreadyCheckin: "今日已签到", changeNameTitle: "修改名字 (消耗100积分)", insufficient: "积分不足！", reviewTitle: "用户真实评价", post: "发布评论", noReview: "暂无评价，快来抢沙发！", clicks: "查看次数" },
+            bm: { home: "UTAMA", welcome: "Selamat Datang", subtitle: "Pilihan Dipercayai", available: "✨ Pilihan Utama", allNations: "Semua Negara", allCups: "Semua Saiz", sortDefault: "Asal (A-Z)", sortClicks: "Klik (Tinggi ke Rendah)", newOnly: "Pilihan Baru", hotOnly: "Pilihan Hangat", back: "← KEMBALI", booking: "TEMPAHAN WHATSAPP", hot: "HANGAT", total: "Jumlah", ovn: "Bermalam", searchPlaceholder: "Cari nama...", profile: "PROFIL", points: "Mata", checkin: "Daftar Masuk", alreadyCheckin: "Sudah Daftar", changeNameTitle: "Tukar Nama (100 mata)", insufficient: "Mata tidak cukup!", reviewTitle: "Ulasan Pengguna", post: "HANTAR ULASAN", noReview: "Tiada ulasan lagi.", clicks: "Klik" }
         };
         const langLabels = { en: "EN", cn: "中", bm: "BM" };
         let currentLang = 'en';
@@ -337,7 +336,6 @@
             const userInfo = document.getElementById('user-info');
             const authBtns = document.getElementById('auth-buttons');
 
-            // 访问统计逻辑
             try {
                 await addDoc(collection(db, "analytics"), {
                     timestamp: Date.now(),
@@ -461,12 +459,20 @@
             if(currentCup !== 'All') filtered = filtered.filter(g => g.cup === currentCup);
             if(frontSearchKeyword) filtered = filtered.filter(g => (g.name || "").toLowerCase().includes(frontSearchKeyword.toLowerCase()));
             
+            // 修改后的排序逻辑
             filtered.sort((a, b) => {
-                const isANew = a.createdAt && (now - a.createdAt < THREE_DAYS_MS);
-                const isBNew = b.createdAt && (now - b.createdAt < THREE_DAYS_MS);
-                if (isANew && !isBNew) return -1;
-                if (!isANew && isBNew) return 1;
-                return b.clicks - a.clicks;
+                if(currentType === 'Clicks') {
+                    return b.clicks - a.clicks; // 点击量从多到少
+                } else if (currentType === 'New') {
+                    const isANew = a.createdAt && (now - a.createdAt < THREE_DAYS_MS);
+                    const isBNew = b.createdAt && (now - b.createdAt < THREE_DAYS_MS);
+                    if (isANew && !isBNew) return -1;
+                    if (!isANew && isBNew) return 1;
+                } else if (currentType === 'Hot') {
+                    return b.clicks - a.clicks;
+                }
+                // 默认排序: A-Z
+                return (a.name || "").localeCompare(b.name || "");
             });
 
             let finalDisplay = [...filtered];
@@ -563,10 +569,8 @@
         window.handleToggleVisibility = async (id, currentStatus) => { await updateDoc(doc(db, "girls", id), { isHidden: !currentStatus }); };
         window.handleDelete = async id => { if(confirm('Delete?')) await deleteDoc(doc(db, "girls", id)); };
 
-        // 核心更新：NEW 手动状态触发
         window.handleSetNew = async (id) => { if(confirm("Set this profile as NEW? (Valid for 3 days)")) { await updateDoc(doc(db, "girls", id), { createdAt: Date.now() }); alert("Set successfully!"); } };
 
-        // 核心更新：根据国籍自动默认价格
         window.handleNationPrice = (nation) => {
             if(["Vietnam", "Thailand", "Laos"].includes(nation)) {
                 document.getElementById('gPrice1').value = 250;
@@ -636,8 +640,10 @@
             document.getElementById('cupFilter').innerHTML = cups.map(c => 
                 `<option value="${c}" ${c === currentCup ? 'selected' : ''}>${c === 'All' ? t.allCups : c}</option>`).join(''); 
 
+            // 修改后的下拉菜单选项
             document.getElementById('typeFilter').innerHTML = `
-                <option value="All" ${currentType === 'All' ? 'selected' : ''}>${t.allTypes}</option>
+                <option value="All" ${currentType === 'All' ? 'selected' : ''}>${t.sortDefault}</option>
+                <option value="Clicks" ${currentType === 'Clicks' ? 'selected' : ''}>${t.sortClicks}</option>
                 <option value="New" ${currentType === 'New' ? 'selected' : ''}>${t.newOnly}</option>
                 <option value="Hot" ${currentType === 'Hot' ? 'selected' : ''}>${t.hotOnly}</option>
             `;
