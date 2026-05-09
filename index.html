@@ -374,12 +374,19 @@
         let authMode = 'login';
         let adminSortBy = 'az';
 
+        // 核心修正：全局变量用于覆盖
+        let globalWhatsApp = "";
+
         // Listen to Global Settings
         onSnapshot(doc(db, "settings", "contact"), (docSnap) => {
             if(docSnap.exists()){
                 const data = docSnap.data();
+                
+                // 核心修正：更新全局号码变量
+                globalWhatsApp = data.whatsapp || "";
+
                 const tgLink = data.telegram || "https://t.me/moicarlist";
-                const waLink = `https://wa.me/${data.whatsapp || "601117917032"}`;
+                const waLink = `https://wa.me/${globalWhatsApp || "601117917032"}`;
                 
                 // Update Front-end Links
                 const tgMain = document.getElementById('link-tg-main');
@@ -391,7 +398,7 @@
                 const tgInput = document.getElementById('set-tg-link');
                 const waInput = document.getElementById('set-wa-num');
                 if(tgInput) tgInput.value = data.telegram || "";
-                if(waInput) waInput.value = data.whatsapp || "";
+                if(waInput) waInput.value = globalWhatsApp;
             }
         });
 
@@ -600,6 +607,10 @@
 
         window.showDetail = async id => {
             const g = allData.find(x => x.id === id); await updateDoc(doc(db, "girls", id), { clicks: increment(1) }); navigateTo('detailPage'); listenToComments(id);
+            
+            // 核心修正：优先级逻辑：全局号码 > 个人号码 > 默认号码
+            const finalWA = globalWhatsApp || g.whatsapp || "601117917032";
+
             document.getElementById('detailContent').innerHTML = `
                 <img src="${g.photo}" class="w-full rounded-xl mb-4 shadow-xl" onerror="this.src='https://via.placeholder.com/400/222222/d4af37?text=No+Photo'">
                 <div class="text-left px-2">
@@ -607,7 +618,7 @@
                     <p class="gold-text text-sm mb-6">${g.age}Y | ${g.cup} | ${g.height}</p>
                     <div class="grid grid-cols-2 gap-2 mb-6"><div class="bg-[#111] p-3 rounded-lg flex justify-between"><span>1Shot</span><span class="gold-text">RM ${g.p1}</span></div><div class="bg-[#111] p-3 rounded-lg flex justify-between"><span>Overnight</span><span class="gold-text">RM ${g.povn || '??'}</span></div></div>
                     <div class="bg-[#111] p-4 rounded-lg text-gray-400 text-xs border-l-2 border-gold">${g.desc}</div>
-                    <a href="https://wa.me/${g.whatsapp}" target="_blank" class="block w-full bg-[#25D366] text-white font-bold py-3 rounded-xl mt-6 text-center uppercase tracking-widest">Whatsapp Booking</a>
+                    <a href="https://wa.me/${finalWA}" target="_blank" class="block w-full bg-[#25D366] text-white font-bold py-3 rounded-xl mt-6 text-center uppercase tracking-widest">Whatsapp Booking</a>
                     <div class="comment-section">
                         <h3 class="text-xs font-bold gold-text mb-4 uppercase tracking-widest">Reviews & Experience</h3>
                         <textarea id="commentText" class="comment-input" placeholder="Share your experience..."></textarea>
@@ -800,7 +811,6 @@
         window.handleCheckIn = async () => { const today = new Date().toISOString().split('T')[0]; if(currentUserData && currentUserData.lastCheckIn !== today) { await updateDoc(doc(db, "users", auth.currentUser.uid), { points: increment(10), lastCheckIn: today }); } };
         function checkCheckInStatus() { const today = new Date().toISOString().split('T')[0]; const btn = document.getElementById('btn-checkin-action'); if(btn && currentUserData && currentUserData.lastCheckIn === today) { btn.disabled = true; btn.innerText = "Already Checked In"; } else if(btn) { btn.disabled = false; btn.innerText = "Daily Check In"; } }
         window.confirmChangeName = async () => { const newName = document.getElementById('updatedUsername').value.trim(); if(!newName || (currentUserData.points||0) < 100) { alert("Insufficient points!"); return; } await updateDoc(doc(db, "users", auth.currentUser.uid), { username: newName, points: increment(-100) }); document.getElementById('changeNameModal').classList.remove('active'); };
-        window.openChangeNameModal = () => { document.getElementById('updatedUsername').value = currentUserData.username; document.getElementById('changeNameModal').classList.add('active'); };
         window.handleFrontSearch = (val) => { frontSearchKeyword = val; window.renderEverything(); };
         window.handleAdminSearch = (val) => { adminSearchKeyword = val; window.renderEverything(); };
         window.clearSearch = (type) => { if(type==='front') { document.getElementById('frontSearch').value=''; frontSearchKeyword=''; } else { document.getElementById('adminSearch').value=''; adminSearchKeyword=''; } window.renderEverything(); };
@@ -813,6 +823,7 @@
         function closeModal() { document.getElementById('girlModal').classList.remove('active'); }
         window.openAuthModal = m => { authMode = m; document.getElementById('authTitle').innerText = m.toUpperCase(); document.getElementById('authBtn').innerText = m === 'login' ? 'Login' : 'Register'; document.getElementById('authToggleText').innerText = (m === 'login' ? "Switch to Register" : "Switch to Login"); document.getElementById('authModal').classList.add('active'); };
         window.closeAuthModal = () => document.getElementById('authModal').classList.remove('active');
+        window.openChangeNameModal = () => { document.getElementById('updatedUsername').value = currentUserData.username; document.getElementById('changeNameModal').classList.add('active'); };
     </script>
 </body>
 </html>
