@@ -188,8 +188,8 @@
 
     <div id="contactWidget" class="contact-widget">
         <div class="contact-options">
-            <a href="https://t.me/moicarlist" target="_blank" class="contact-icon tg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"></a>
-            <a href="https://wa.me/601117917032" target="_blank" class="contact-icon wa"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
+            <a id="link-tg-main" href="https://t.me/moicarlist" target="_blank" class="contact-icon tg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"></a>
+            <a id="link-wa-main" href="https://wa.me/601117917032" target="_blank" class="contact-icon wa"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
         </div>
         <div class="contact-main-btn" onclick="document.getElementById('contactWidget').classList.toggle('active')">☎</div>
     </div>
@@ -227,6 +227,7 @@
             <div class="admin-tabs">
                 <div id="tab-list" class="admin-tab-btn active" onclick="switchAdminTab('list')">MANAGE PROFILES</div>
                 <div id="tab-reviews" class="admin-tab-btn" onclick="switchAdminTab('reviews')">MANAGE REVIEWS</div>
+                <div id="tab-settings" class="admin-tab-btn" onclick="switchAdminTab('settings')">GLOBAL SETTINGS</div>
             </div>
 
             <div id="admin-list-view">
@@ -257,6 +258,23 @@
             <div id="admin-reviews-view" class="hidden">
                 <div class="flex justify-between items-center mb-4"><h3 class="text-sm font-bold text-gray-400">Recent Reviews</h3></div>
                 <div id="adminReviewsList" class="space-y-2"></div>
+            </div>
+
+            <div id="admin-settings-view" class="hidden">
+                <div class="bg-[#0a0a0a] p-6 rounded-xl border border-[#222]">
+                    <h3 class="text-sm font-bold gold-text mb-4 uppercase">Update Contact Buttons</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-[10px] text-gray-500 block mb-1">Telegram Link (Full URL)</label>
+                            <input type="text" id="set-tg-link" placeholder="https://t.me/yourname">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-500 block mb-1">WhatsApp Number (e.g. 60111xxxx)</label>
+                            <input type="text" id="set-wa-num" placeholder="601117917032">
+                        </div>
+                        <button onclick="window.saveGlobalSettings()" class="btn-gold">Update Contacts</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -356,6 +374,36 @@
         let authMode = 'login';
         let adminSortBy = 'az';
 
+        // Listen to Global Settings
+        onSnapshot(doc(db, "settings", "contact"), (docSnap) => {
+            if(docSnap.exists()){
+                const data = docSnap.data();
+                const tgLink = data.telegram || "https://t.me/moicarlist";
+                const waLink = `https://wa.me/${data.whatsapp || "601117917032"}`;
+                
+                // Update Front-end Links
+                const tgMain = document.getElementById('link-tg-main');
+                const waMain = document.getElementById('link-wa-main');
+                if(tgMain) tgMain.href = tgLink;
+                if(waMain) waMain.href = waLink;
+
+                // Pre-fill Admin Inputs
+                const tgInput = document.getElementById('set-tg-link');
+                const waInput = document.getElementById('set-wa-num');
+                if(tgInput) tgInput.value = data.telegram || "";
+                if(waInput) waInput.value = data.whatsapp || "";
+            }
+        });
+
+        window.saveGlobalSettings = async () => {
+            const tg = document.getElementById('set-tg-link').value;
+            const wa = document.getElementById('set-wa-num').value;
+            try {
+                await setDoc(doc(db, "settings", "contact"), { telegram: tg, whatsapp: wa }, { merge: true });
+                alert("Contacts updated successfully!");
+            } catch(e) { console.error(e); alert("Update failed."); }
+        };
+
         onAuthStateChanged(auth, async (user) => {
             const adminLink = document.getElementById('admin-link');
             const userInfo = document.getElementById('user-info');
@@ -427,10 +475,20 @@
         window.handleDeleteComment = async (id) => { if(confirm("Delete this review forever?")) { try { await deleteDoc(doc(db, "comments", id)); } catch(e) { console.error(e); } } };
 
         window.switchAdminTab = (tab) => {
-            const listTab = document.getElementById('tab-list'); const reviewTab = document.getElementById('tab-reviews');
-            const listView = document.getElementById('admin-list-view'); const reviewView = document.getElementById('admin-reviews-view');
-            if(tab === 'list') { listTab.classList.add('active'); reviewTab.classList.remove('active'); listView.classList.remove('hidden'); reviewView.classList.add('hidden'); }
-            else { listTab.classList.remove('active'); reviewTab.classList.add('active'); listView.classList.add('hidden'); reviewView.classList.remove('hidden'); }
+            const listTab = document.getElementById('tab-list'); 
+            const reviewTab = document.getElementById('tab-reviews');
+            const settingsTab = document.getElementById('tab-settings');
+
+            const listView = document.getElementById('admin-list-view'); 
+            const reviewView = document.getElementById('admin-reviews-view');
+            const settingsView = document.getElementById('admin-settings-view');
+
+            [listTab, reviewTab, settingsTab].forEach(t => t.classList.remove('active'));
+            [listView, reviewView, settingsView].forEach(v => v.classList.add('hidden'));
+
+            if(tab === 'list') { listTab.classList.add('active'); listView.classList.remove('hidden'); }
+            else if(tab === 'reviews') { reviewTab.classList.add('active'); reviewView.classList.remove('hidden'); }
+            else if(tab === 'settings') { settingsTab.classList.add('active'); settingsView.classList.remove('hidden'); }
         };
 
         window.submitComment = async (girlId) => {
