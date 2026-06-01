@@ -99,13 +99,19 @@
         .contact-widget { position: fixed; bottom: 20px; right: 20px; display: flex; align-items: center; gap: 10px; z-index: 1000; }
         .contact-main-btn { width: 50px; height: 50px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 20px; font-weight: bold; box-shadow: 0 4px 15px rgba(212,175,55,0.4); cursor: pointer; transition: 0.3s; z-index: 2; }
         .contact-main-btn:active { transform: scale(0.9); }
-        .contact-options { display: flex; gap: 10px; opacity: 0; transform: translateX(50px); pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .contact-options { display: flex; gap: 10px; opacity: 0; transform: translateX(50px); pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); align-items: center; }
         .contact-widget.active .contact-options { opacity: 1; transform: translateX(0); pointer-events: auto; }
-        .contact-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; }
+        .contact-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; cursor: pointer; position: relative; }
         .contact-icon img { width: 24px; height: 24px; }
         .contact-icon.wa { background: #25D366; }
         .contact-icon.tg { background: #0088cc; }
         .contact-icon:hover { transform: translateY(-5px); }
+
+        /* WhatsApp Sub Options Expansion */
+        .wa-sub-options { display: flex; flex-direction: column; gap: 8px; position: absolute; bottom: 55px; left: 50%; transform: translateX(-50%) scale(0); transform-origin: bottom center; opacity: 0; pointer-events: none; transition: all 0.3s ease; }
+        .contact-icon.wa.sub-active .wa-sub-options { transform: translateX(-50%) scale(1); opacity: 1; pointer-events: auto; }
+        .wa-sub-btn { width: 40px; height: 40px; border-radius: 50%; background: #128C7E; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.5); border: 1px solid #25D366; text-decoration: none; }
+        .wa-sub-btn:hover { background: #075E54; }
     </style>
 </head>
 <body>
@@ -189,9 +195,15 @@
     <div id="contactWidget" class="contact-widget">
         <div class="contact-options">
             <a id="link-tg-main" href="https://t.me/moicarlist" target="_blank" class="contact-icon tg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"></a>
-            <a id="link-wa-main" href="https://wa.me/601117917032" target="_blank" class="contact-icon wa"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
+            <div id="btn-wa-container" class="contact-icon wa" onclick="event.stopPropagation(); this.classList.toggle('sub-active')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+                <div class="wa-sub-options">
+                    <a id="link-wa-main-1" href="https://wa.me/601117917032" target="_blank" class="wa-sub-btn" onclick="event.stopPropagation();">1</a>
+                    <a id="link-wa-main-2" href="https://wa.me/601117917032" target="_blank" class="wa-sub-btn" onclick="event.stopPropagation();">2</a>
+                </div>
+            </div>
         </div>
-        <div class="contact-main-btn" onclick="document.getElementById('contactWidget').classList.toggle('active')">☎</div>
+        <div class="contact-main-btn" onclick="document.getElementById('contactWidget').classList.toggle('active'); document.getElementById('btn-wa-container').classList.remove('sub-active');">☎</div>
     </div>
 
     <div id="userPage" class="page">
@@ -269,8 +281,12 @@
                             <input type="text" id="set-tg-link" placeholder="https://t.me/yourname">
                         </div>
                         <div>
-                            <label class="text-[10px] text-gray-500 block mb-1">WhatsApp Number (e.g. 60111xxxx)</label>
-                            <input type="text" id="set-wa-num" placeholder="601117917032">
+                            <label class="text-[10px] text-emerald-500 block mb-1">WhatsApp 1号号码 (大确权：同步更换所有小姐详情页联系号码)</label>
+                            <input type="text" id="set-wa-num" placeholder="60111xxxx">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-500 block mb-1">WhatsApp 2号号码 (仅供右下角悬浮窗选择)</label>
+                            <input type="text" id="set-wa-num-2" placeholder="60111xxxx">
                         </div>
                         <button onclick="window.saveGlobalSettings()" class="btn-gold">Update Contacts</button>
                     </div>
@@ -374,39 +390,47 @@
         let authMode = 'login';
         let adminSortBy = 'az';
 
-        // 核心修正：全局变量用于覆盖
+        // 核心修正：两个全局变量用于管理覆盖
         let globalWhatsApp = "";
+        let globalWhatsApp2 = "";
 
         // Listen to Global Settings
         onSnapshot(doc(db, "settings", "contact"), (docSnap) => {
             if(docSnap.exists()){
                 const data = docSnap.data();
                 
-                // 核心修正：更新全局号码变量
+                // 核心修正：获取并更新1号和2号全局号码变量
                 globalWhatsApp = data.whatsapp || "";
+                globalWhatsApp2 = data.whatsapp2 || "";
 
                 const tgLink = data.telegram || "https://t.me/moicarlist";
-                const waLink = `https://wa.me/${globalWhatsApp || "601117917032"}`;
+                const waLink1 = `https://wa.me/${globalWhatsApp || "601117917032"}`;
+                const waLink2 = `https://wa.me/${globalWhatsApp2 || "601117917032"}`;
                 
                 // Update Front-end Links
                 const tgMain = document.getElementById('link-tg-main');
-                const waMain = document.getElementById('link-wa-main');
+                const waMain1 = document.getElementById('link-wa-main-1');
+                const waMain2 = document.getElementById('link-wa-main-2');
                 if(tgMain) tgMain.href = tgLink;
-                if(waMain) waMain.href = waLink;
+                if(waMain1) waMain1.href = waLink1;
+                if(waMain2) waMain2.href = waLink2;
 
                 // Pre-fill Admin Inputs
                 const tgInput = document.getElementById('set-tg-link');
                 const waInput = document.getElementById('set-wa-num');
+                const waInput2 = document.getElementById('set-wa-num-2');
                 if(tgInput) tgInput.value = data.telegram || "";
                 if(waInput) waInput.value = globalWhatsApp;
+                if(waInput2) waInput2.value = globalWhatsApp2;
             }
         });
 
         window.saveGlobalSettings = async () => {
             const tg = document.getElementById('set-tg-link').value;
             const wa = document.getElementById('set-wa-num').value;
+            const wa2 = document.getElementById('set-wa-num-2').value;
             try {
-                await setDoc(doc(db, "settings", "contact"), { telegram: tg, whatsapp: wa }, { merge: true });
+                await setDoc(doc(db, "settings", "contact"), { telegram: tg, whatsapp: wa, whatsapp2: wa2 }, { merge: true });
                 alert("Contacts updated successfully!");
             } catch(e) { console.error(e); alert("Update failed."); }
         };
@@ -608,7 +632,7 @@
         window.showDetail = async id => {
             const g = allData.find(x => x.id === id); await updateDoc(doc(db, "girls", id), { clicks: increment(1) }); navigateTo('detailPage'); listenToComments(id);
             
-            // 核心修正：优先级逻辑：全局号码 > 个人号码 > 默认号码
+            // 核心修正：大确权逻辑：只要有全局1号号码，直接强制覆盖所有小姐的号码；没有则回退到小姐个人专属号码
             const finalWA = globalWhatsApp || g.whatsapp || "601117917032";
 
             document.getElementById('detailContent').innerHTML = `
