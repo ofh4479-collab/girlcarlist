@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MD8RMMY2TZ"></script>
     <script>
@@ -14,107 +14,115 @@
     <title>MoiCarList | Professional Services</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#d4af37',
+                        darkBg: '#0f0f0f',
+                        cardBg: '#1a1a1a',
+                        cardBorder: '#2a2a2a'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         :root { --gold: #d4af37; --whatsapp: #25D366; }
-        body { font-family: 'Poppins', sans-serif; background: #000; color: #fff; margin:0; }
-        nav { background: rgba(20, 20, 20, 0.98); padding: 12px 0; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #222; }
-        .nav-link { cursor: pointer; color: #aaa; font-size: 11px; font-weight: 600; text-transform: uppercase; transition: color 0.3s; line-height: 1; display: flex; align-items: center; }
-        .nav-link:hover { color: var(--gold); }
-        .lang-toggle { color: var(--gold); font-size: 12px; font-weight: bold; border: 1px solid #333; padding: 2px 8px; border-radius: 4px; background: #111; min-width: 40px; height: 24px; display: flex; align-items: center; justify-content: center; }
-        .hero-section { background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); padding: 35px 20px; text-align: center; border-bottom: 1px solid #222; }
-        .area-button { background: #111; border: 1px solid var(--gold); transition: 0.2s; cursor: pointer; font-size: 12px; padding: 8px 4px; border-radius: 8px; color: #fff; }
-        .area-button.active { background: var(--gold); color: #000; font-weight: bold; }
-        .card { background: #0a0a0a; border-radius: 12px; overflow: hidden; border: 1px solid #1a1a1a; position: relative; transition: transform 0.3s ease; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-5px); border-color: var(--gold); }
-        .card-img { width: 100%; height: 220px; object-fit: contain; background: #000; border-bottom: 1px solid #111; }
-        .gold-text { color: var(--gold); font-weight: 600; }
-        .white-name { color: #ffffff; font-weight: 700; font-size: 15px; } 
-        .nation-tag { font-size: 9px; background: rgba(212, 175, 55, 0.1); color: var(--gold); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(212, 175, 55, 0.3); }
-        .area-tag { font-size: 9px; background: #222; color: #aaa; padding: 1px 5px; border-radius: 3px; border: 1px solid #333; margin-left: 5px; vertical-align: middle; }
-        .hot-badge { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.7); color: #d4af37; font-size: 10px; padding: 3px 7px; border-radius: 20px; border: 1px solid #d4af37; font-weight: bold; display: flex; items-center; gap: 3px; z-index: 10; }
-        .new-badge { position: absolute; top: 8px; left: 8px; background: #ff3b30; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 4px; font-weight: 800; z-index: 11; box-shadow: 0 0 10px rgba(255,59,48,0.5); }
+        body { font-family: 'Poppins', system-ui, -apple-system, sans-serif; background-color: #0f0f0f; color: #e5e5e5; margin: 0; }
+        .gold-text { color: #d4af37; }
+        .gold-border { border-color: #d4af37; }
+        .gold-bg { background-color: #d4af37; }
         
+        /* 地区与筛选按钮 */
+        .area-button { background: #1a1a1a; border: 1px solid #2a2a2a; transition: all 0.2s; cursor: pointer; font-size: 11px; padding: 8px 4px; border-radius: 12px; color: #aaa; }
+        .area-button.active { background: rgba(212, 175, 55, 0.15); border-color: #d4af37; color: #d4af37; font-weight: bold; }
+        
+        /* 卡片与卡片徽章 */
+        .card { background: #1a1a1a; border-radius: 16px; overflow: hidden; border: 1px solid #2a2a2a; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column; shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); }
+        .card:hover { border-color: rgba(212, 175, 55, 0.5); transform: translateY(-3px); }
+        .card-img { width: 100%; height: 210px; object-fit: cover; background: #0f0f0f; border-bottom: 1px solid #2a2a2a; }
+        .nation-tag { font-size: 10px; background: rgba(212, 175, 55, 0.15); color: #d4af37; padding: 2px 8px; border-radius: 9999px; border: 1px solid rgba(212, 175, 55, 0.3); font-weight: 500; }
+        .area-tag { font-size: 9px; background: #2a2a2a; color: #888; padding: 2px 6px; border-radius: 6px; border: 1px solid #333; margin-left: 4px; }
+        .new-badge { position: absolute; top: 10px; left: 10px; background: #ef4444; color: #fff; font-size: 9px; padding: 2px 8px; border-radius: 6px; font-weight: 800; z-index: 11; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4); }
+        
+        /* 页面切换 */
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 500; align-items: center; justify-content: center; padding: 15px; }
+        
+        /* 遮罩弹窗 */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 500; align-items: center; justify-content: center; padding: 16px; }
         .modal.active { display: flex; }
-        input, select, textarea { background: #111; border: 1px solid #333; color: #fff; padding: 8px; border-radius: 6px; width: 100%; margin: 4px 0; font-size: 14px; outline: none; }
-        input:focus { border-color: var(--gold); }
-        .btn-preset { background: #222; font-size: 10px; padding: 5px 8px; border-radius: 4px; color: var(--gold); border: 1px solid #444; }
-        .admin-item { background: #0a0a0a; border-bottom: 1px solid #222; padding: 10px 8px; display: flex; align-items: center; justify-content: space-between; }
-        .count-pill { background: rgba(212, 175, 55, 0.1); color: var(--gold); font-size: 10px; padding: 2px 8px; border-radius: 10px; border: 1px solid rgba(212, 175, 55, 0.3); }
-        .search-container { background: #111; border: 1px solid #222; border-radius: 20px; padding: 5px 15px; display: flex; align-items: center; margin-bottom: 15px; position: relative; }
-        .search-input { background: transparent; border: none; margin: 0; padding: 5px; font-size: 13px; width: 100%; color: #fff; }
-        .clear-btn { position: absolute; right: 15px; color: #666; cursor: pointer; font-size: 18px; font-weight: bold; display: none; }
+        
+        /* 表单控件黑金统一优化 */
+        input, select, textarea { background: #0f0f0f !important; border: 1px solid #2a2a2a !important; color: #fff !important; padding: 10px !important; border-radius: 12px !important; font-size: 12px !important; outline: none !important; transition: border-color 0.2s; }
+        input:focus, select:focus, textarea:focus { border-color: #d4af37 !important; }
+        .btn-preset { background: #2a2a2a; font-size: 11px; padding: 6px 10px; border-radius: 8px; color: #d4af37; border: 1px solid #3a3a3a; transition: 0.2s; }
+        .btn-preset:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.1); }
+        
+        .admin-item { background: #1a1a1a; border-bottom: 1px solid #2a2a2a; padding: 12px 10px; display: flex; align-items: center; justify-content: space-between; border-radius: 12px; margin-bottom: 8px; }
+        .count-pill { background: rgba(212, 175, 55, 0.1); color: #d4af37; font-size: 11px; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3); }
+        
+        .search-container { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 14px; padding: 6px 14px; display: flex; align-items: center; position: relative; }
+        .search-input { background: transparent !important; border: none !important; margin: 0 !important; padding: 4px !important; font-size: 12px !important; width: 100%; color: #fff !important; }
+        .clear-btn { position: absolute; right: 14px; color: #666; cursor: pointer; font-size: 16px; font-weight: bold; display: none; }
         .search-container:hover .clear-btn { display: block; }
-        .btn-gold { background: var(--gold); color: #000; font-weight: bold; padding: 12px; border-radius: 8px; width: 100%; text-transform: uppercase; margin-top: 10px; cursor: pointer; }
+        .btn-gold { background: #d4af37; color: #000; font-weight: bold; padding: 12px; border-radius: 12px; width: 100%; text-transform: uppercase; margin-top: 10px; cursor: pointer; transition: brightness 0.2s; }
+        .btn-gold:hover { filter: brightness(110%); }
 
-        .sort-controls { display: flex; gap: 5px; margin-bottom: 10px; flex-wrap: wrap; }
-        .sort-btn { font-size: 10px; padding: 4px 10px; background: #1a1a1a; border: 1px solid #333; color: #888; border-radius: 4px; cursor: pointer; }
-        .sort-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(212, 175, 55, 0.1); }
+        .sort-controls { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+        .sort-btn { font-size: 10px; padding: 5px 12px; background: #1a1a1a; border: 1px solid #2a2a2a; color: #888; border-radius: 8px; cursor: pointer; }
+        .sort-btn.active { border-color: #d4af37; color: #d4af37; background: rgba(212, 175, 55, 0.1); }
 
-        .user-card { 
-            background: linear-gradient(145deg, #151515 0%, #050505 100%); 
-            border: 1px solid rgba(212, 175, 55, 0.3); 
-            border-radius: 24px; padding: 40px 20px; margin-top: 20px;
-        }
-        .avatar-container { 
-            position: relative; width: 100px; height: 100px; margin: 0 auto 15px; 
-            border: 2px solid var(--gold); border-radius: 50%; padding: 3px; cursor: pointer;
-            background: #111; overflow: hidden;
-        }
+        .user-card { background: #1a1a1a; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 24px; padding: 30px 20px; margin-top: 20px; shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        .avatar-container { position: relative; width: 90px; height: 90px; margin: 0 auto 15px; border: 2px solid #d4af37; border-radius: 50%; padding: 2px; cursor: pointer; background: #0f0f0f; overflow: hidden; }
         .avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .avatar-overlay { 
-            position: absolute; inset: 0; background: rgba(0,0,0,0.5); 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-size: 10px; color: var(--gold); font-weight: bold; opacity: 0; transition: 0.2s; 
-        }
+        .avatar-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #d4af37; font-weight: bold; opacity: 0; transition: 0.2s; }
         .avatar-container:hover .avatar-overlay { opacity: 1; }
-        .point-box {
-            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
-            border-radius: 15px; padding: 15px; color: #000; 
-            display: flex; justify-content: space-between; align-items: center; margin: 20px 0;
-        }
-        .btn-checkin { 
-            width: 100%; padding: 14px; border-radius: 12px; background: #fff; 
-            color: #000; font-size: 14px; font-weight: 700; transition: 0.2s; 
-        }
+        
+        .point-box { background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%); border-radius: 16px; padding: 16px; color: #000; display: flex; justify-between: space-between; align-items: center; margin: 20px 0; }
+        .btn-checkin { width: 100%; padding: 12px; border-radius: 12px; background: #fff; color: #000; font-size: 13px; font-weight: 700; transition: 0.2s; }
         .btn-checkin:disabled { opacity: 0.5; background: #555; }
         
-        .admin-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-        .admin-tab-btn { color: #666; font-size: 12px; font-weight: bold; padding: 5px 15px; cursor: pointer; border-radius: 5px; }
-        .admin-tab-btn.active { color: var(--gold); background: rgba(212, 175, 55, 0.1); }
-        .comment-section { background: #0a0a0a; border: 1px solid #222; border-radius: 15px; padding: 15px; margin-top: 25px; }
-        .comment-input { background: #111; border: 1px solid #333; border-radius: 8px; padding: 10px; font-size: 12px; color: #fff; width: 100%; min-height: 70px; resize: none; outline: none; }
-        .comment-item { padding: 12px 0; border-bottom: 1px solid #1a1a1a; }
-        .vote-btn { cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 11px; padding: 4px 8px; border-radius: 4px; background: #111; border: 1px solid #222; transition: 0.2s; }
-        .vote-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(212, 175, 55, 0.1); }
-        .card-votes { position: absolute; bottom: 38px; right: 8px; display: flex; flex-direction: column; gap: 4px; z-index: 20; }
-        .mini-vote { background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; min-width: 42px; }
-        .mini-vote.active { border-color: var(--gold); color: var(--gold); }
-        .admin-area-divider { background: #1a1a1a; color: var(--gold); font-size: 10px; font-weight: bold; text-align: center; padding: 4px 0; margin: 10px 0 5px 0; border-radius: 4px; border: 1px dashed #333; }
-        #drop-area.drag-over { border: 2px dashed var(--gold); background: rgba(212, 175, 55, 0.05); }
+        .admin-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid #2a2a2a; padding-bottom: 12px; }
+        .admin-tab-btn { color: #666; font-size: 11px; font-weight: bold; padding: 6px 14px; cursor: pointer; border-radius: 8px; }
+        .admin-tab-btn.active { color: #d4af37; background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); }
+        
+        .comment-section { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 18px; padding: 18px; margin-top: 25px; }
+        .comment-input { background: #0f0f0f !important; border: 1px solid #2a2a2a !important; border-radius: 12px !important; padding: 12px !important; font-size: 12px !important; color: #fff !important; width: 100%; min-height: 80px; resize: none; }
+        .comment-item { padding: 12px 0; border-bottom: 1px solid #2a2a2a; }
+        .vote-btn { cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 11px; padding: 4px 10px; border-radius: 6px; background: #0f0f0f; border: 1px solid #2a2a2a; transition: 0.2s; }
+        .vote-btn.active { border-color: #d4af37; color: #d4af37; background: rgba(212, 175, 55, 0.1); }
+        
+        .card-votes { position: absolute; bottom: 8px; right: 8px; display: flex; gap: 4px; z-index: 20; }
+        .mini-vote { background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 6px; font-size: 10px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; }
+        .mini-vote.active { border-color: #d4af37; color: #d4af37; background: rgba(212, 175, 55, 0.2); }
+        .admin-area-divider { background: #1a1a1a; color: #d4af37; font-size: 10px; font-weight: bold; text-align: center; padding: 6px 0; margin: 12px 0 6px 0; border-radius: 8px; border: 1px dashed #3a3a3a; }
+        #drop-area.drag-over { border: 2px dashed #d4af37; background: rgba(212, 175, 55, 0.05); }
 
-        /* Floating Contact Buttons */
-        .contact-widget { position: fixed; bottom: 20px; right: 20px; display: flex; align-items: center; gap: 10px; z-index: 1000; }
-        .contact-main-btn { width: 50px; height: 50px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 20px; font-weight: bold; box-shadow: 0 4px 15px rgba(212,175,55,0.4); cursor: pointer; transition: 0.3s; z-index: 2; }
+        /* 右下角悬浮窗 */
+        .contact-widget { position: fixed; bottom: 24px; right: 20px; display: flex; align-items: center; gap: 10px; z-index: 1000; }
+        .contact-main-btn { width: 48px; height: 48px; background: #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 20px; font-weight: bold; box-shadow: 0 4px 15px rgba(212,175,55,0.4); cursor: pointer; transition: 0.3s; z-index: 2; }
         .contact-main-btn:active { transform: scale(0.9); }
         .contact-options { display: flex; gap: 10px; opacity: 0; transform: translateX(50px); pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); align-items: center; }
         .contact-widget.active .contact-options { opacity: 1; transform: translateX(0); pointer-events: auto; }
-        .contact-icon { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; cursor: pointer; position: relative; }
-        .contact-icon img { width: 24px; height: 24px; }
+        .contact-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; cursor: pointer; position: relative; }
+        .contact-icon img { width: 22px; height: 22px; }
         .contact-icon.wa { background: #25D366; }
         .contact-icon.tg { background: #0088cc; }
-        .contact-icon:hover { transform: translateY(-5px); }
+        .contact-icon:hover { transform: translateY(-3px); }
 
-        /* WhatsApp Sub Options Expansion */
-        .wa-sub-options { display: flex; flex-direction: column; gap: 8px; position: absolute; bottom: 55px; left: 50%; transform: translateX(-50%) scale(0); transform-origin: bottom center; opacity: 0; pointer-events: none; transition: all 0.3s ease; }
+        .wa-sub-options { display: flex; flex-direction: column; gap: 8px; position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%) scale(0); transform-origin: bottom center; opacity: 0; pointer-events: none; transition: all 0.3s ease; }
         .contact-icon.wa.sub-active .wa-sub-options { transform: translateX(-50%) scale(1); opacity: 1; pointer-events: auto; }
-        .wa-sub-btn { width: 40px; height: 40px; border-radius: 50%; background: #128C7E; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.5); border: 1px solid #25D366; text-decoration: none; }
+        .wa-sub-btn { width: 38px; height: 38px; border-radius: 50%; background: #128C7E; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.5); border: 1px solid #25D366; text-decoration: none; }
         .wa-sub-btn:hover { background: #075E54; }
+
+        /* 图片URL链接文本省略显示 */
+        .ellipsis-input { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
     </style>
 </head>
-<body>
+<body class="pb-16">
 
     <script>
         const translations = {
@@ -144,54 +152,61 @@
         }
     </script>
 
-    <nav>
-        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
-            <div class="gold-text text-xl cursor-pointer font-bold" onclick="navigateTo('home')">MoiCarList</div>
-            <div class="flex gap-4 items-center h-full">
-                <a id="nav-home" onclick="navigateTo('home')" class="nav-link">HOME</a>
-                <div id="user-info" class="hidden flex items-center gap-3 bg-[#111] px-2 py-1 rounded-full border border-[#222]">
+    <!-- 顶部导航栏 -->
+    <header class="bg-cardBg/90 backdrop-blur-md border-b border-cardBorder sticky top-0 z-40 px-4 py-3 shadow-lg">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="gold-text text-xl cursor-pointer font-bold tracking-wider" onclick="navigateTo('home')">MoiCarList</div>
+            <div class="flex gap-3 items-center h-full">
+                <a id="nav-home" onclick="navigateTo('home')" class="text-xs text-gray-300 font-bold hover:text-gold transition cursor-pointer">HOME</a>
+                <div id="user-info" class="hidden flex items-center gap-2 bg-darkBg px-2 py-1 rounded-full border border-cardBorder">
                     <div onclick="navigateTo('userPage')" class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition">
-                        <img id="nav-avatar-img" src="https://via.placeholder.com/30/222222/d4af37?text=👤" class="w-7 h-7 rounded-full border border-gold object-cover">
+                        <img id="nav-avatar-img" src="https://via.placeholder.com/30/222222/d4af37?text=👤" class="w-6 h-6 rounded-full border border-gold object-cover">
                         <span id="user-display" class="text-[10px] text-gold font-bold truncate max-w-[80px]">User</span>
                     </div>
-                    <a id="admin-link" onclick="navigateTo('adminPage')" class="nav-link hidden text-blue-400 text-[9px] border-l border-[#333] pl-2">ADMIN</a>
-                    <a onclick="window.handleLogout()" class="nav-link text-[9px] text-red-500 border-l border-[#333] pl-2">OUT</a>
+                    <a id="admin-link" onclick="navigateTo('adminPage')" class="hidden text-blue-400 text-[9px] border-l border-cardBorder pl-2 font-bold cursor-pointer">ADMIN</a>
+                    <a onclick="window.handleLogout()" class="text-[9px] text-red-400 border-l border-cardBorder pl-2 cursor-pointer font-bold">OUT</a>
                 </div>
                 <div id="auth-buttons" class="flex items-center">
-                    <a onclick="window.openAuthModal('login')" class="nav-link">Login</a>
+                    <a onclick="window.openAuthModal('login')" class="text-xs bg-gold/10 text-gold px-3 py-1.5 rounded-full border border-gold/30 hover:bg-gold/20 transition cursor-pointer font-bold">Login</a>
                 </div>
-                <button id="btn-lang-toggle" onclick="toggleLang()" class="lang-toggle">EN</button>
+                <button id="btn-lang-toggle" onclick="toggleLang()" class="text-xs text-gold font-bold border border-cardBorder bg-darkBg px-2.5 py-1 rounded-full hover:border-gold transition">EN</button>
             </div>
         </div>
-    </nav>
+    </header>
 
+    <!-- 首页 View -->
     <div id="home" class="page active">
-        <div class="hero-section">
-            <h1 id="hero-title" class="text-2xl md:text-4xl font-bold text-[#d4af37] mb-2">Welcome to MoiCarList</h1>
+        <div class="bg-gradient-to-b from-cardBg to-darkBg py-8 px-4 text-center border-b border-cardBorder">
+            <h1 id="hero-title" class="text-2xl md:text-4xl font-bold gold-text mb-2 tracking-wide">Welcome to MoiCarList</h1>
             <p id="hero-desc" class="text-gray-400 text-xs md:text-sm">Your Trusted Choice</p>
         </div>
         <div class="max-w-6xl mx-auto px-4 py-6">
             <div id="areaButtons" class="grid grid-cols-3 md:grid-cols-5 gap-2 mb-6 text-center"></div>
+            
             <div class="search-container mb-6">
-                <span class="mr-2 opacity-50">🔍</span>
+                <span class="mr-2 opacity-50 text-xs">🔍</span>
                 <input type="text" id="frontSearch" class="search-input" placeholder="Search name..." oninput="window.handleFrontSearch(this.value)">
                 <span class="clear-btn" onclick="window.clearSearch('front')">&times;</span>
             </div>
+            
             <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-3">
                 <div class="flex items-center gap-3">
-                    <h2 id="section-title" class="text-lg font-bold gold-text">✨ Featured Listings</h2>
+                    <h2 id="section-title" class="text-base md:text-lg font-bold gold-text">✨ Featured Listings</h2>
                     <span id="area-count" class="count-pill">Total: 0</span>
                 </div>
                 <div class="flex gap-2 w-full md:w-auto">
-                    <select id="typeFilter" onchange="window.selectType(this.value)" class="bg-[#111] text-[#d4af37] border border-[#333] rounded px-2 py-1 text-[11px] outline-none flex-1"></select>
-                    <select id="nationFilter" onchange="window.selectNation(this.value)" class="bg-[#111] text-[#d4af37] border border-[#333] rounded px-2 py-1 text-[11px] outline-none flex-1"></select>
-                    <select id="cupFilter" onchange="window.selectCup(this.value)" class="bg-[#111] text-[#d4af37] border border-[#333] rounded px-2 py-1 text-[11px] outline-none flex-1"></select>
+                    <select id="typeFilter" onchange="window.selectType(this.value)" class="gold-text border border-cardBorder rounded-xl px-2 py-1.5 text-xs outline-none flex-1"></select>
+                    <select id="nationFilter" onchange="window.selectNation(this.value)" class="gold-text border border-cardBorder rounded-xl px-2 py-1.5 text-xs outline-none flex-1"></select>
+                    <select id="cupFilter" onchange="window.selectCup(this.value)" class="gold-text border border-cardBorder rounded-xl px-2 py-1.5 text-xs outline-none flex-1"></select>
                 </div>
             </div>
-            <div id="displayList" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+            
+            <!-- 卡片 Grid -->
+            <div id="displayList" class="grid grid-cols-2 md:grid-cols-4 gap-3.5"></div>
         </div>
     </div>
 
+    <!-- 悬浮联系方式控件 -->
     <div id="contactWidget" class="contact-widget">
         <div class="contact-options">
             <a id="link-tg-main" href="https://t.me/moicarlist" target="_blank" class="contact-icon tg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"></a>
@@ -206,16 +221,17 @@
         <div class="contact-main-btn" onclick="document.getElementById('contactWidget').classList.toggle('active'); document.getElementById('btn-wa-container').classList.remove('sub-active');">☎</div>
     </div>
 
+    <!-- 个人中心 View -->
     <div id="userPage" class="page">
         <div class="max-w-md mx-auto p-6 text-center">
-            <h2 id="profile-title" class="text-xl font-bold gold-text mb-2">PROFILE</h2>
+            <h2 id="profile-title" class="text-lg font-bold gold-text mb-2 tracking-wide">PROFILE</h2>
             <div class="user-card">
                 <div id="avatarContainer" class="avatar-container" onclick="document.getElementById('userAvatarInput').click()">
                     <img id="user-avatar-img" src="https://via.placeholder.com/150/222222/d4af37?text=👤" class="avatar-img">
                     <div id="avatarOverlayText" class="avatar-overlay">CHANGE</div>
                     <input type="file" id="userAvatarInput" class="hidden" accept="image/*">
                 </div>
-                <h3 id="profile-name" class="text-lg font-bold text-white mb-1">---</h3>
+                <h3 id="profile-name" class="text-base font-bold text-white mb-1">---</h3>
                 <p id="profile-email" class="text-gray-500 text-[10px] mb-4">---</p>
                 <div class="point-box">
                     <div class="text-left">
@@ -225,17 +241,18 @@
                     <div class="text-2xl">🪙</div>
                 </div>
                 <div class="space-y-3">
-                    <button id="btn-checkin-action" onclick="window.handleCheckIn()" class="btn-checkin">Daily Check In</button>
-                    <button onclick="window.openChangeNameModal()" class="w-full py-3 text-[11px] text-gold border border-gold/30 rounded-xl hover:bg-gold/10 transition">✏️ Edit Username (100 pts)</button>
+                    <button id="btn-checkin-action" onclick="window.handleCheckIn()" class="btn-checkin shadow-lg">Daily Check In</button>
+                    <button onclick="window.openChangeNameModal()" class="w-full py-3 text-xs text-gold border border-gold/30 rounded-xl hover:bg-gold/10 transition font-bold">✏️ Edit Username (100 pts)</button>
                 </div>
             </div>
             <button onclick="navigateTo('home')" class="mt-8 text-gray-400 text-xs hover:text-gold transition">← Back to Home</button>
         </div>
     </div>
 
-    <div id="adminPage" class="page bg-[#050505]">
+    <!-- 后台控制中心 View -->
+    <div id="adminPage" class="page">
         <div class="max-w-4xl mx-auto p-4">
-            <h2 class="text-xl font-bold gold-text mb-6">Admin Control Center</h2>
+            <h2 class="text-lg font-bold gold-text mb-6">Admin Control Center</h2>
             <div class="admin-tabs">
                 <div id="tab-list" class="admin-tab-btn active" onclick="switchAdminTab('list')">MANAGE PROFILES</div>
                 <div id="tab-reviews" class="admin-tab-btn" onclick="switchAdminTab('reviews')">MANAGE REVIEWS</div>
@@ -243,50 +260,59 @@
             </div>
 
             <div id="admin-list-view">
-                <div class="flex justify-between items-center mb-4"><h3 class="text-sm font-bold text-gray-400">Profiles</h3><button onclick="openModal()" class="bg-[#d4af37] text-black px-4 py-1 rounded-full font-bold text-sm">+ Add New</button></div>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xs font-bold text-gray-400">Profiles</h3>
+                    <button onclick="openModal()" class="bg-gold text-black px-4 py-1.5 rounded-xl font-bold text-xs shadow-md hover:brightness-110">+ Add New</button>
+                </div>
                 <div id="adminAreaButtons" class="grid grid-cols-3 md:grid-cols-5 gap-2 mb-6 text-center"></div>
                 
                 <div class="sort-controls">
-                    <span class="text-[9px] text-gray-500 flex items-center mr-2 uppercase">Sort By:</span>
+                    <span class="text-[10px] text-gray-500 flex items-center mr-2 uppercase font-bold">Sort By:</span>
                     <button id="sort-az" onclick="window.setAdminSort('az')" class="sort-btn active">A-Z</button>
+                    <button id="sort-newest" onclick="window.setAdminSort('newest')" class="sort-btn">Newest First</button>
                     <button id="sort-clicks" onclick="window.setAdminSort('clicks')" class="sort-btn">Clicks</button>
                     <button id="sort-show" onclick="window.setAdminSort('show')" class="sort-btn">Show First</button>
                     <button id="sort-hide" onclick="window.setAdminSort('hide')" class="sort-btn">Hide First</button>
                 </div>
 
-                <div class="flex gap-2 mb-2">
-                    <button onclick="window.handleBulkHide(true)" class="flex-1 bg-red-900/30 text-red-500 text-[10px] font-bold py-2 rounded-lg border border-red-500/30">BATCH HIDE AREA</button>
-                    <button onclick="window.handleBulkHide(false)" class="flex-1 bg-green-900/30 text-green-500 text-[10px] font-bold py-2 rounded-lg border border-green-500/30">BATCH SHOW AREA</button>
+                <div class="flex gap-2 mb-3">
+                    <button onclick="window.handleBulkHide(true)" class="flex-1 bg-red-900/20 text-red-400 text-[10px] font-bold py-2.5 rounded-xl border border-red-500/30">HIDE AREA</button>
+                    <button onclick="window.handleBulkHide(false)" class="flex-1 bg-green-900/20 text-green-400 text-[10px] font-bold py-2.5 rounded-xl border border-green-500/30">SHOW AREA</button>
                 </div>
 
-                <div class="search-container">
-                    <span class="mr-2 opacity-50">🔍</span>
+                <!-- 新增：一键删除当前地区所有小姐按钮 -->
+                <div class="mb-4">
+                    <button onclick="window.handleBatchDeleteArea()" class="w-full bg-red-600/30 hover:bg-red-600/50 text-red-400 text-[11px] font-bold py-3 rounded-xl border border-red-500/50 transition tracking-wide uppercase">⚠️ 一键删除当前地区所有小姐 (DELETE ALL IN AREA)</button>
+                </div>
+
+                <div class="search-container mb-4">
+                    <span class="mr-2 opacity-50 text-xs">🔍</span>
                     <input type="text" id="adminSearch" class="search-input" placeholder="Search by name..." oninput="window.handleAdminSearch(this.value)">
                     <span class="clear-btn" onclick="window.clearSearch('admin')">&times;</span>
                 </div>
-                <div id="adminList" class="space-y-1"></div>
+                <div id="adminList" class="space-y-2"></div>
             </div>
 
             <div id="admin-reviews-view" class="hidden">
-                <div class="flex justify-between items-center mb-4"><h3 class="text-sm font-bold text-gray-400">Recent Reviews</h3></div>
+                <div class="flex justify-between items-center mb-4"><h3 class="text-xs font-bold text-gray-400">Recent Reviews</h3></div>
                 <div id="adminReviewsList" class="space-y-2"></div>
             </div>
 
             <div id="admin-settings-view" class="hidden">
-                <div class="bg-[#0a0a0a] p-6 rounded-xl border border-[#222]">
-                    <h3 class="text-sm font-bold gold-text mb-4 uppercase">Update Contact Buttons</h3>
+                <div class="bg-cardBg p-6 rounded-2xl border border-cardBorder">
+                    <h3 class="text-xs font-bold gold-text mb-4 uppercase tracking-wider">Update Contact Buttons</h3>
                     <div class="space-y-4">
                         <div>
-                            <label class="text-[10px] text-gray-500 block mb-1">Telegram Link (Full URL)</label>
-                            <input type="text" id="set-tg-link" placeholder="https://t.me/yourname">
+                            <label class="text-[10px] text-gray-400 block mb-1">Telegram Link (Full URL)</label>
+                            <input type="text" id="set-tg-link" placeholder="https://t.me/yourname" class="w-full">
                         </div>
                         <div>
-                            <label class="text-[10px] text-emerald-500 block mb-1">WhatsApp 1号号码 (大确权：同步更换所有小姐详情页联系号码)</label>
-                            <input type="text" id="set-wa-num" placeholder="60111xxxx">
+                            <label class="text-[10px] text-emerald-400 block mb-1">WhatsApp 1号号码 (大确权：同步更换所有小姐详情页联系号码)</label>
+                            <input type="text" id="set-wa-num" placeholder="60111xxxx" class="w-full">
                         </div>
                         <div>
-                            <label class="text-[10px] text-gray-500 block mb-1">WhatsApp 2号号码 (仅供右下角悬浮窗选择)</label>
-                            <input type="text" id="set-wa-num-2" placeholder="60111xxxx">
+                            <label class="text-[10px] text-gray-400 block mb-1">WhatsApp 2号号码 (仅供右下角悬浮窗选择)</label>
+                            <input type="text" id="set-wa-num-2" placeholder="60111xxxx" class="w-full">
                         </div>
                         <button onclick="window.saveGlobalSettings()" class="btn-gold">Update Contacts</button>
                     </div>
@@ -295,77 +321,193 @@
         </div>
     </div>
 
+    <!-- 信息输入 / 编辑弹窗 Modal -->
     <div id="girlModal" class="modal">
-        <div id="drop-area" class="bg-[#111] p-6 rounded-xl w-full max-w-sm max-h-[90vh] overflow-y-auto border border-[#222]">
-            <h3 id="modalTitle" class="gold-text font-bold mb-4">Profile Info</h3>
+        <div id="drop-area" class="bg-cardBg p-5 rounded-3xl w-full max-w-sm max-h-[90vh] overflow-y-auto border border-gold/40 shadow-2xl relative">
+            <h3 id="modalTitle" class="gold-text font-bold mb-3 text-sm tracking-wide">Profile Info</h3>
             <input type="hidden" id="editId">
-            <input type="text" id="gName" placeholder="Name">
-            <div class="grid grid-cols-2 gap-2">
-                <input type="number" id="gAge" placeholder="Age">
-                <select id="gNation" onchange="window.handleNationPrice(this.value)">
-                    <option value="Vietnam">Vietnam</option>
-                    <option value="Thailand">Thailand</option>
-                    <option value="Malaysia">Malaysia</option>
-                    <option value="Indonesia">Indonesia</option>
-                    <option value="Laos">Laos</option>
-                    <option value="China">China</option>
-                </select>
+            
+            <div class="space-y-3">
+                <!-- 1. 图片上传区域（置顶且紧凑左右对齐） -->
+                <div class="p-3 bg-gold/10 border border-gold/30 rounded-2xl">
+                    <label class="block text-gold text-[10px] font-bold mb-2">📸 封面海报图片 (拖拽/上传)</label>
+                    <div class="flex items-center gap-3">
+                        <!-- 左侧：图片预览区 -->
+                        <div id="photoPreviewContainer" class="w-20 h-24 bg-darkBg border border-gold/40 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center relative">
+                            <img id="photoPreview" src="" class="w-full h-full object-cover hidden">
+                            <span id="photoPlaceholder" class="text-[9px] text-gray-500 text-center px-1">无图片<br>No Img</span>
+                        </div>
+                        <!-- 右侧：控制输入框与按钮 -->
+                        <div class="flex-1 flex flex-col gap-1.5 min-w-0">
+                            <div class="flex gap-1.5">
+                                <input type="text" id="gPhoto" placeholder="图片 URL..." class="m-0 flex-1 min-w-0 text-[11px] !py-1.5 !px-2 ellipsis-input" oninput="window.updatePhotoPreview(this.value)">
+                                <input type="file" id="fileInput" class="hidden" accept="image/*">
+                                <button type="button" onclick="document.getElementById('fileInput').click()" class="bg-gold text-black font-bold px-2.5 py-1.5 rounded-xl text-[10px] whitespace-nowrap flex-shrink-0">UPLOAD</button>
+                            </div>
+                            <div id="uploadStatus" class="text-[9px] text-gray-400 truncate">Ready (可拖拽文件至此)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 基本信息表单 -->
+                <div>
+                    <label class="block text-gray-400 text-[10px] mb-1">名字 (Name)</label>
+                    <input type="text" id="gName" placeholder="Name">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-1">年龄 (Age)</label>
+                        <input type="number" id="gAge" placeholder="Age">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-1">国籍 (Nation)</label>
+                        <select id="gNation" onchange="window.handleNationPrice(this.value)" class="w-full gold-text">
+                            <option value="Vietnam">Vietnam</option>
+                            <option value="Thailand">Thailand</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Laos">Laos</option>
+                            <option value="China">China</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-1">胸围 (Cup)</label>
+                        <input type="text" id="gCup" placeholder="Cup Size">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-1">身高 (Height)</label>
+                        <input type="text" id="gHeight" placeholder="Height">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 text-[10px] mb-1">地区 (Area)</label>
+                    <select id="gArea" class="w-full gold-text">
+                        <option value="Alor Setar">Alor Setar</option>
+                        <option value="Sungei Petani">Sungei Petani</option>
+                        <option value="Bukit Mertajam">Bukit Mertajam</option>
+                        <option value="Penang">Penang</option>
+                        <option value="Ipoh">Ipoh</option>
+                        <option value="Batu Pahat(Johor)">Batu Pahat(Johor)</option>
+                        <option value="Melaka">Melaka</option>
+                        <option value="Kuantan">Kuantan</option>
+                        <option value="Temerloh">Temerloh</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 text-[10px] mb-1">酒店 (Hotel - Admin Only)</label>
+                    <input type="text" id="gHotel" placeholder="Hotel Name">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="text-[10px] text-gray-400 block mb-1">状态 (Status)</label>
+                        <select id="gStatus" class="w-full">
+                            <option value="available">Available</option>
+                            <option value="busy">Busy</option>
+                            <option value="stop">Stop</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[10px] text-gray-400 block mb-1">显示 (Visibility)</label>
+                        <select id="gIsHidden" class="w-full">
+                            <option value="false">Show on Front</option>
+                            <option value="true">Hide from Front</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 text-[10px] mb-1">价格预设 (Preset)</label>
+                    <div class="flex gap-2">
+                        <button type="button" onclick="setPrice(230)" class="btn-preset flex-1">RM230</button>
+                        <button type="button" onclick="setPrice(250)" class="btn-preset flex-1">RM250</button>
+                        <button type="button" onclick="setPrice(270)" class="btn-preset flex-1">RM270</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-1">1 Shot (RM)</label>
+                        <input type="number" id="gPrice1" placeholder="1 Shot">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 text-[10px] mb-1">Overnight (RM)</label>
+                        <input type="number" id="gPriceOvn" placeholder="Overnight">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 text-[10px] mb-1">WhatsApp 号码</label>
+                    <input type="text" id="gWhatsapp" placeholder="WhatsApp (60xxx)" value="">
+                </div>
+
+                <div>
+                    <label class="block text-gray-400 text-[10px] mb-1">服务介绍 (Bio)</label>
+                    <textarea id="gDesc" placeholder="Bio" rows="3" class="w-full leading-relaxed"></textarea>
+                </div>
             </div>
-            <div class="grid grid-cols-2 gap-2"><input type="text" id="gCup" placeholder="Cup Size"><input type="text" id="gHeight" placeholder="Height"></div>
-            <select id="gArea">
-                <option value="Alor Setar">Alor Setar</option>
-                <option value="Sungei Petani">Sungei Petani</option>
-                <option value="Bukit Mertajam">Bukit Mertajam</option>
-                <option value="Penang">Penang</option>
-                <option value="Ipoh">Ipoh</option>
-                <option value="Batu Pahat(Johor)">Batu Pahat(Johor)</option>
-                <option value="Melaka">Melaka</option>
-                <option value="Kuantan">Kuantan</option>
-                <option value="Temerloh">Temerloh</option>
-            </select>
-            <input type="text" id="gHotel" placeholder="Hotel Name (Only Admin Can See)">
-            <div class="grid grid-cols-2 gap-2"><div><label class="text-[10px] text-gray-500 block ml-1">STATUS</label><select id="gStatus"><option value="available">Available</option><option value="busy">Busy</option><option value="stop">Stop</option></select></div><div><label class="text-[10px] text-gray-500 block ml-1">VISIBILITY</label><select id="gIsHidden"><option value="false">Show on Front</option><option value="true">Hide from Front</option></select></div></div>
-            <div class="flex gap-2 my-2"><button onclick="setPrice(230)" class="btn-preset">Set RM230</button><button onclick="setPrice(250)" class="btn-preset">Set RM250</button><button onclick="setPrice(270)" class="btn-preset">Set RM270</button></div>
-            <div class="grid grid-cols-2 gap-2"><input type="number" id="gPrice1" placeholder="1 Shot (RM)"><input type="number" id="gPriceOvn" placeholder="Overnight (RM)"></div>
-            <div class="mt-2 flex gap-2"><input type="text" id="gPhoto" placeholder="Photo URL (Drag & Drop here)" class="m-0 flex-1"><input type="file" id="fileInput" class="hidden" accept="image/*"><button type="button" onclick="document.getElementById('fileInput').click()" class="bg-gray-700 px-3 py-2 rounded text-[10px] text-white">UPLOAD</button></div>
-            <div id="uploadStatus" class="text-[10px] text-gray-500 mb-2">Ready (Support Drag & Drop)</div>
-            <input type="text" id="gWhatsapp" placeholder="WhatsApp (60xxx)" value="601117917032">
-            <textarea id="gDesc" placeholder="Bio" rows="2"></textarea>
-            <button onclick="handleSave()" class="w-full bg-[#d4af37] text-black font-bold py-3 rounded-lg mt-4 text-sm uppercase">Save Profile</button>
-            <button onclick="closeModal()" class="w-full text-gray-500 mt-3 text-xs">CANCEL</button>
+
+            <div class="flex gap-2 pt-4">
+                <button type="button" onclick="closeModal()" class="w-1/2 bg-cardBorder text-gray-300 py-2.5 rounded-xl text-xs font-bold">CANCEL</button>
+                <button type="button" onclick="handleSave()" class="w-1/2 bg-gold text-black font-bold py-2.5 rounded-xl text-xs shadow-lg uppercase">Save Profile</button>
+            </div>
         </div>
     </div>
 
+    <!-- 修改用户名 Modal -->
     <div id="changeNameModal" class="modal">
-        <div class="bg-[#111] p-8 rounded-2xl w-full max-w-sm border border-gold text-center">
+        <div class="bg-cardBg p-6 rounded-3xl w-full max-w-sm border border-gold/40 text-center shadow-2xl">
             <h3 id="changeNameLabel" class="gold-text font-bold mb-4 text-sm">Modify Name (100 pts)</h3>
-            <input type="text" id="updatedUsername" placeholder="Enter New Name">
-            <button onclick="window.confirmChangeName()" class="btn-gold mt-4">Confirm & Pay 100 Pts</button>
-            <button onclick="document.getElementById('changeNameModal').classList.remove('active')" class="mt-4 text-xs opacity-50 block w-full">CANCEL</button>
+            <input type="text" id="updatedUsername" placeholder="Enter New Name" class="w-full mb-4">
+            <button onclick="window.confirmChangeName()" class="btn-gold">Confirm & Pay 100 Pts</button>
+            <button onclick="document.getElementById('changeNameModal').classList.remove('active')" class="mt-3 text-xs text-gray-500 block w-full">CANCEL</button>
         </div>
     </div>
 
+    <!-- 登录 / 注册 Modal -->
     <div id="authModal" class="modal">
-        <div class="bg-[#111] p-8 rounded-2xl w-full max-w-sm border border-[#222] text-center">
-            <h3 id="authTitle" class="gold-text font-bold mb-6 text-sm uppercase">LOGIN</h3>
-            <input type="email" id="authEmail" placeholder="Email"><input type="password" id="authPassword" placeholder="Password">
+        <div class="bg-cardBg p-6 rounded-3xl w-full max-w-sm border border-cardBorder text-center shadow-2xl">
+            <h3 id="authTitle" class="gold-text font-bold mb-6 text-sm tracking-wider uppercase">LOGIN</h3>
+            <input type="email" id="authEmail" placeholder="Email" class="w-full mb-2">
+            <input type="password" id="authPassword" placeholder="Password" class="w-full mb-4">
             <button id="authBtn" onclick="window.processAuth()" class="btn-gold uppercase">Login</button>
-            <p id="authToggleText" onclick="window.toggleAuthMode()" class="text-[10px] text-gray-500 mt-4 crystalline-pointer underline">Switch to Register</p>
-            <button onclick="window.closeAuthModal()" class="mt-4 text-xs opacity-50">CANCEL</button>
+            <p id="authToggleText" onclick="window.toggleAuthMode()" class="text-[11px] text-gray-400 mt-4 cursor-pointer underline">Switch to Register</p>
+            <button onclick="window.closeAuthModal()" class="mt-3 text-xs text-gray-500">CANCEL</button>
         </div>
     </div>
 
+    <!-- 首次登录设置昵称 Modal -->
     <div id="usernameModal" class="modal">
-        <div class="bg-[#111] p-8 rounded-2xl w-full max-w-sm border border-gold text-center">
-            <h3 class="gold-text font-bold mb-4">Set Your Identity</h3>
-            <p class="text-[10px] text-gray-400 mb-4">Welcome! Please set a nickname for your account.</p>
-            <input type="text" id="newUsername" placeholder="Set Your Username">
-            <button onclick="window.saveUsername()" class="btn-gold mt-4">Confirm & Start</button>
+        <div class="bg-cardBg p-6 rounded-3xl w-full max-w-sm border border-gold/40 text-center shadow-2xl">
+            <h3 class="gold-text font-bold mb-2 text-sm">Set Your Identity</h3>
+            <p class="text-[11px] text-gray-400 mb-4">Welcome! Please set a nickname for your account.</p>
+            <input type="text" id="newUsername" placeholder="Set Your Username" class="w-full mb-4">
+            <button onclick="window.saveUsername()" class="btn-gold">Confirm & Start</button>
         </div>
     </div>
 
-    <div id="detailPage" class="page"><div class="max-w-2xl mx-auto p-4 pb-20"><div id="back-btn-text" class="mb-4 gold-text font-bold cursor-pointer" onclick="navigateTo('home')">← BACK</div><div id="detailContent"></div></div></div>
+    <!-- 纯照片展示 Lightbox 弹窗 (点击全局任意位置均自动关闭) -->
+    <div id="photoLightboxModal" class="modal" onclick="window.closePhotoLightbox()">
+        <div class="relative max-w-4xl max-h-[90vh] flex justify-center items-center p-2" onclick="window.closePhotoLightbox()">
+            <img id="lightboxImg" src="" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-gold/30">
+        </div>
+    </div>
 
+    <!-- 详情页面 View (已作为备用保留) -->
+    <div id="detailPage" class="page">
+        <div class="max-w-xl mx-auto p-4 pb-20">
+            <div id="back-btn-text" class="mb-4 gold-text font-bold cursor-pointer text-xs flex items-center gap-1" onclick="navigateTo('home')">← BACK</div>
+            <div id="detailContent"></div>
+        </div>
+    </div>
+
+    <!-- JS Firebase Module 数据交互 -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc, updateDoc, increment, getDoc, setDoc, query, where, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -390,24 +532,21 @@
         let authMode = 'login';
         let adminSortBy = 'az';
 
-        // 核心修正：两个全局变量用于管理覆盖
         let globalWhatsApp = "";
         let globalWhatsApp2 = "";
 
-        // Listen to Global Settings
+        // 全局联系方式监听
         onSnapshot(doc(db, "settings", "contact"), (docSnap) => {
             if(docSnap.exists()){
                 const data = docSnap.data();
                 
-                // 核心修正：获取并更新1号和2号全局号码变量
                 globalWhatsApp = data.whatsapp || "";
                 globalWhatsApp2 = data.whatsapp2 || "";
 
                 const tgLink = data.telegram || "https://t.me/moicarlist";
-                const waLink1 = `https://wa.me/${globalWhatsApp || "601117917032"}`;
-                const waLink2 = `https://wa.me/${globalWhatsApp2 || "601117917032"}`;
+                const waLink1 = `https://wa.me/${globalWhatsApp || ""}`;
+                const waLink2 = `https://wa.me/${globalWhatsApp2 || ""}`;
                 
-                // Update Front-end Links
                 const tgMain = document.getElementById('link-tg-main');
                 const waMain1 = document.getElementById('link-wa-main-1');
                 const waMain2 = document.getElementById('link-wa-main-2');
@@ -415,7 +554,6 @@
                 if(waMain1) waMain1.href = waLink1;
                 if(waMain2) waMain2.href = waLink2;
 
-                // Pre-fill Admin Inputs
                 const tgInput = document.getElementById('set-tg-link');
                 const waInput = document.getElementById('set-wa-num');
                 const waInput2 = document.getElementById('set-wa-num-2');
@@ -498,7 +636,7 @@
                 const comments = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
                 list.innerHTML = comments.map(c => {
                     const girl = allData.find(g => g.id === c.girlId);
-                    return `<div class="admin-item !block"><div class="flex justify-between items-start mb-2"><div class="flex items-center gap-2"><img src="${c.avatar || 'https://via.placeholder.com/20'}" class="w-5 h-5 rounded-full object-cover"><span class="text-[10px] font-bold text-gold">${c.username}</span><span class="text-[9px] text-gray-600">to</span><span class="text-[10px] text-white font-bold">${girl ? girl.name : 'Unknown'}</span></div><button onclick="window.handleDeleteComment('${c.id}')" class="text-red-500 text-[9px] font-bold px-2 py-1 bg-red-900/10 rounded">DELETE</button></div><p class="text-[11px] text-gray-400 bg-[#111] p-2 rounded">${c.text}</p></div>`;
+                    return `<div class="admin-item !block"><div class="flex justify-between items-start mb-2"><div class="flex items-center gap-2"><img src="${c.avatar || 'https://via.placeholder.com/20'}" class="w-5 h-5 rounded-full object-cover"><span class="text-[10px] font-bold gold-text">${c.username}</span><span class="text-[9px] text-gray-500">to</span><span class="text-[10px] text-white font-bold">${girl ? girl.name : 'Unknown'}</span></div><button onclick="window.handleDeleteComment('${c.id}')" class="text-red-400 text-[9px] font-bold px-2 py-1 bg-red-900/25 rounded-lg">DELETE</button></div><p class="text-[11px] text-gray-300 bg-darkBg p-2.5 rounded-xl border border-cardBorder">${c.text}</p></div>`;
                 }).join('');
             });
         }
@@ -543,13 +681,13 @@
             onSnapshot(q, (snapshot) => {
                 const container = document.getElementById('commentsList'); if (!container) return;
                 const comments = snapshot.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => b.createdAt - a.createdAt);
-                if (comments.length === 0) { container.innerHTML = `<p class="text-[10px] text-gray-600 text-center py-4 italic">No reviews yet.</p>`; return; }
-                container.innerHTML = comments.map(c => `<div class="comment-item"><div class="flex gap-3"><img src="${c.avatar || 'https://via.placeholder.com/30/222/d4af37?text=👤'}" class="w-6 h-6 rounded-full border border-gold/20 object-cover"><div class="flex-1"><div class="flex justify-between items-center mb-1"><span class="text-[10px] font-bold text-gold">${c.username}</span><span class="text-[8px] text-gray-600">${new Date(c.createdAt).toLocaleDateString()}</span></div><p class="text-[11px] text-gray-300 leading-relaxed">${c.text}</p><div class="flex gap-3 mt-2"><div onclick="window.handleVote('${c.id}', 'like', '${c.uid}', 'comments')" class="vote-btn ${userVotes[c.id] === 'like' ? 'active' : ''}">👍 ${c.likes||0}</div><div onclick="window.handleVote('${c.id}', 'dislike', '${c.uid}', 'comments')" class="vote-btn ${userVotes[c.id] === 'dislike' ? 'active' : ''}">👎 ${c.dislikes||0}</div></div></div></div></div>`).join('');
+                if (comments.length === 0) { container.innerHTML = `<p class="text-[10px] text-gray-500 text-center py-4 italic">No reviews yet.</p>`; return; }
+                container.innerHTML = comments.map(c => `<div class="comment-item"><div class="flex gap-3"><img src="${c.avatar || 'https://via.placeholder.com/30/222/d4af37?text=👤'}" class="w-7 h-7 rounded-full border border-gold/30 object-cover"><div class="flex-1"><div class="flex justify-between items-center mb-1"><span class="text-[11px] font-bold gold-text">${c.username}</span><span class="text-[9px] text-gray-500">${new Date(c.createdAt).toLocaleDateString()}</span></div><p class="text-xs text-gray-300 leading-relaxed">${c.text}</p><div class="flex gap-3 mt-2"><div onclick="window.handleVote('${c.id}', 'like', '${c.uid}', 'comments')" class="vote-btn ${userVotes[c.id] === 'like' ? 'active' : ''}">👍 ${c.likes||0}</div><div onclick="window.handleVote('${c.id}', 'dislike', '${c.uid}', 'comments')" class="vote-btn ${userVotes[c.id] === 'dislike' ? 'active' : ''}">👎 ${c.dislikes||0}</div></div></div></div></div>`).join('');
             });
         }
 
         onSnapshot(colRef, (snapshot) => {
-            allData = snapshot.docs.map(d => ({ id: d.id, ...d.data(), clicks: d.data().clicks || 0, likes: d.data().likes || 0, dislikes: d.data().dislikes || 0, isHidden: d.data().isHidden === "true" || d.data().isHidden === true })).sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+            allData = snapshot.docs.map(d => ({ id: d.id, ...d.data(), clicks: d.data().clicks || 0, likes: d.data().likes || 0, dislikes: d.data().dislikes || 0, isHidden: d.data().isHidden === "true" || d.data().isHidden === true, createdAt: d.data().createdAt || 0 })).sort((a, b) => (a.name || "").localeCompare(b.name || ""));
             window.renderEverything();
         });
 
@@ -589,6 +727,7 @@
             if (adminSearchKeyword) adminResult = allData.filter(g => (g.name || "").toLowerCase().includes(adminSearchKeyword.toLowerCase()));
             
             if(adminSortBy === 'az') adminResult.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+            else if(adminSortBy === 'newest') adminResult.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
             else if(adminSortBy === 'clicks') adminResult.sort((a, b) => b.clicks - a.clicks);
             else if(adminSortBy === 'show') adminResult.sort((a, b) => (a.isHidden === b.isHidden) ? 0 : a.isHidden ? 1 : -1);
             else if(adminSortBy === 'hide') adminResult.sort((a, b) => (a.isHidden === b.isHidden) ? 0 : a.isHidden ? -1 : 1);
@@ -597,6 +736,7 @@
             checkCheckInStatus();
         };
 
+        /* 纯黑金质感卡片渲染 */
         function renderMain(displayData) {
             const now = Date.now(); 
             const THREE_DAYS_MS = 3 * 24 * 60 * 60 * 1000;
@@ -606,20 +746,25 @@
                 const isNew = g.createdAt && (now - g.createdAt < THREE_DAYS_MS);
 
                 return `
-                <div class="card">
+                <div class="card cursor-pointer group" onclick="window.showDetail('${g.id}')">
                     ${isNew ? `<div class="new-badge">NEW</div>` : ''}
-                    <div class="relative" onclick="window.showDetail('${g.id}')">
-                        <img src="${g.photo}" class="card-img" onerror="this.src='https://via.placeholder.com/220/222222/d4af37?text=No+Photo'">
+                    <div class="relative overflow-hidden">
+                        <img src="${g.photo}" class="card-img group-hover:scale-105 transition duration-300" onerror="this.src='https://via.placeholder.com/220/1a1a1a/d4af37?text=No+Photo'">
                     </div>
-                    <div class="p-2 flex-grow relative" onclick="window.showDetail('${g.id}')">
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="white-name truncate">${g.name}<span class="area-tag">${g.area}</span></span>
+                    <div class="p-3 flex-grow flex flex-col justify-between relative">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-white font-bold text-sm truncate">${g.name}<span class="area-tag">${g.area}</span></span>
+                                <span class="nation-tag">${g.nation}</span>
+                            </div>
+                            <div class="text-xs text-gray-200 font-semibold mb-1.5">${g.age}Y · ${g.cup} · ${g.height}</div>
                         </div>
-                        <div class="text-[9px] text-gray-500 mb-1 font-bold">🔥 ${t.clicks}: ${g.clicks || 0}</div>
-                        <div class="flex justify-between items-center">
-                            <span class="gold-text text-[10px] opacity-80">${g.age}Y | ${g.cup} | ${g.height}</span>
-                            <span class="nation-tag">${g.nation}</span>
+                        
+                        <div class="flex justify-between items-center mt-2 pt-2 border-t border-cardBorder">
+                            <span class="gold-text font-bold text-xs">RM ${g.p1} <span class="text-[9px] text-gray-500 font-normal">/ Shot</span></span>
+                            <span class="text-[10px] text-gray-500">🔥 ${g.clicks || 0}</span>
                         </div>
+
                         <div class="card-votes" onclick="event.stopPropagation()">
                             <div onclick="window.handleVote('${g.id}', 'like', null, 'girls')" class="mini-vote ${userVotes[g.id] === 'like' ? 'active' : ''}">👍 ${g.likes||0}</div>
                             <div onclick="window.handleVote('${g.id}', 'dislike', null, 'girls')" class="mini-vote ${userVotes[g.id] === 'dislike' ? 'active' : ''}">👎 ${g.dislikes||0}</div>
@@ -629,27 +774,20 @@
             }).join('');
         }
 
+        /* 修改后的点击显示逻辑：直接展示大图 Modal (点击任何地方关闭) */
         window.showDetail = async id => {
-            const g = allData.find(x => x.id === id); await updateDoc(doc(db, "girls", id), { clicks: increment(1) }); navigateTo('detailPage'); listenToComments(id);
+            const g = allData.find(x => x.id === id); 
+            if (!g) return;
+            await updateDoc(doc(db, "girls", id), { clicks: increment(1) }); 
             
-            // 核心修正：大确权逻辑：只要有全局1号号码，直接强制覆盖所有小姐的号码；没有则回退到小姐个人专属号码
-            const finalWA = globalWhatsApp || g.whatsapp || "601117917032";
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.src = g.photo || 'https://via.placeholder.com/400/1a1a1a/d4af37?text=No+Photo';
+            
+            document.getElementById('photoLightboxModal').classList.add('active');
+        };
 
-            document.getElementById('detailContent').innerHTML = `
-                <img src="${g.photo}" class="w-full rounded-xl mb-4 shadow-xl" onerror="this.src='https://via.placeholder.com/400/222222/d4af37?text=No+Photo'">
-                <div class="text-left px-2">
-                    <h1 class="text-2xl font-bold text-white mb-1">${g.name} <span class="nation-tag">${g.nation}</span> <span class="area-tag">${g.area}</span></h1>
-                    <p class="gold-text text-sm mb-6">${g.age}Y | ${g.cup} | ${g.height}</p>
-                    <div class="grid grid-cols-2 gap-2 mb-6"><div class="bg-[#111] p-3 rounded-lg flex justify-between"><span>1Shot</span><span class="gold-text">RM ${g.p1}</span></div><div class="bg-[#111] p-3 rounded-lg flex justify-between"><span>Overnight</span><span class="gold-text">RM ${g.povn || '??'}</span></div></div>
-                    <div class="bg-[#111] p-4 rounded-lg text-gray-400 text-xs border-l-2 border-gold">${g.desc}</div>
-                    <a href="https://wa.me/${finalWA}" target="_blank" class="block w-full bg-[#25D366] text-white font-bold py-3 rounded-xl mt-6 text-center uppercase tracking-widest">Whatsapp Booking</a>
-                    <div class="comment-section">
-                        <h3 class="text-xs font-bold gold-text mb-4 uppercase tracking-widest">Reviews & Experience</h3>
-                        <textarea id="commentText" class="comment-input" placeholder="Share your experience..."></textarea>
-                        <button onclick="window.submitComment('${g.id}')" class="btn-gold !text-[10px] !py-2 !mt-2">POST REVIEW</button>
-                        <div id="commentsList" class="mt-6 space-y-4"></div>
-                    </div>
-                </div>`;
+        window.closePhotoLightbox = () => {
+            document.getElementById('photoLightboxModal').classList.remove('active');
         };
 
         window.handleLogout = () => signOut(auth).then(() => navigateTo('home'));
@@ -659,18 +797,53 @@
             const data = { 
                 name: document.getElementById('gName').value, age: document.getElementById('gAge').value, nation: document.getElementById('gNation').value, cup: document.getElementById('gCup').value, height: document.getElementById('gHeight').value, p1: document.getElementById('gPrice1').value, povn: document.getElementById('gPriceOvn').value, area: document.getElementById('gArea').value, status: document.getElementById('gStatus').value, photo: document.getElementById('gPhoto').value, whatsapp: document.getElementById('gWhatsapp').value, desc: document.getElementById('gDesc').value, hotel: document.getElementById('gHotel').value, isHidden: document.getElementById('gIsHidden').value === "true" 
             };
-            if(id) { await updateDoc(doc(db, "girls", id), { ...data, isHidden: data.isHidden }); } 
-            else { await addDoc(colRef, { ...data, clicks: 0, likes: 0, dislikes: 0, createdAt: Date.now() }); }
+            if(id) { 
+                await updateDoc(doc(db, "girls", id), { ...data, isHidden: data.isHidden }); 
+            } else { 
+                await addDoc(colRef, { ...data, clicks: 0, likes: 0, dislikes: 0, createdAt: Date.now() }); 
+            }
             closeModal();
         };
 
         window.handleEdit = id => {
             const g = allData.find(x => x.id === id); openModal(true);
-            document.getElementById('editId').value = g.id; document.getElementById('gName').value = g.name; document.getElementById('gAge').value = g.age; document.getElementById('gNation').value = g.nation; document.getElementById('gCup').value = g.cup; document.getElementById('gHeight').value = g.height; document.getElementById('gPrice1').value = g.p1; document.getElementById('gPriceOvn').value = g.povn || ""; document.getElementById('gArea').value = g.area; document.getElementById('gStatus').value = g.status; document.getElementById('gIsHidden').value = g.isHidden ? "true" : "false"; document.getElementById('gPhoto').value = g.photo; document.getElementById('gWhatsapp').value = g.whatsapp; document.getElementById('gDesc').value = g.desc; document.getElementById('gHotel').value = g.hotel || "";
+            document.getElementById('editId').value = g.id; document.getElementById('gName').value = g.name; document.getElementById('gAge').value = g.age; document.getElementById('gNation').value = g.nation; document.getElementById('gCup').value = g.cup; document.getElementById('gHeight').value = g.height; document.getElementById('gPrice1').value = g.p1; document.getElementById('gPriceOvn').value = g.povn || ""; document.getElementById('gArea').value = g.area; document.getElementById('gStatus').value = g.status; document.getElementById('gIsHidden').value = g.isHidden ? "true" : "false"; document.getElementById('gPhoto').value = g.photo; document.getElementById('gWhatsapp').value = g.whatsapp || ""; document.getElementById('gDesc').value = g.desc; document.getElementById('gHotel').value = g.hotel || "";
+            // 更新预览图片
+            window.updatePhotoPreview(g.photo);
         };
 
         window.handleToggleVisibility = async (id, currentStatus) => { await updateDoc(doc(db, "girls", id), { isHidden: !currentStatus }); };
         window.handleDelete = async id => { if(confirm('Delete?')) await deleteDoc(doc(db, "girls", id)); };
+
+        // 一键删除当前地区所有小姐的核心函数（带有双重确认防护）
+        window.handleBatchDeleteArea = async () => {
+            const targetList = allData.filter(g => g.area === currentArea);
+            if (targetList.length === 0) {
+                alert(`当前地区 [${currentArea}] 没有任何小姐数据。`);
+                return;
+            }
+            
+            // 第一次确认
+            const firstConfirm = confirm(`【高风险警告】\n您即将清空当前地区 [${currentArea}] 的所有小姐档案，共计 ${targetList.length} 位！\n此操作不可恢复，是否继续？`);
+            if (!firstConfirm) return;
+
+            // 第二次确定输入或选择（双重防点错）
+            const secondConfirm = prompt(`为防止误操作，请输入当前地区名称 [${currentArea}] 以确认删除：`);
+            if (secondConfirm !== currentArea) {
+                alert("输入的地区名称不匹配，已取消删除操作。");
+                return;
+            }
+
+            try {
+                for (let g of targetList) {
+                    await deleteDoc(doc(db, "girls", g.id));
+                }
+                alert(`成功删除 [${currentArea}] 的所有小姐档案！`);
+            } catch (err) {
+                console.error(err);
+                alert("批量删除过程中出现错误，请检查控制台。");
+            }
+        };
 
         window.handleSetNew = async (id) => { if(confirm("Set this profile as NEW? (Valid for 3 days)")) { await updateDoc(doc(db, "girls", id), { createdAt: Date.now() }); alert("Set successfully!"); } };
 
@@ -706,7 +879,7 @@
                 
                 let html = "";
                 Object.keys(grouped).sort().forEach(area => {
-                    html += `<div class="admin-area-divider">----${area}----</div>`;
+                    html += `<div class="admin-area-divider">---- ${area} ----</div>`;
                     html += grouped[area].map(g => createAdminItem(g)).join('');
                 });
                 container.innerHTML = html;
@@ -719,18 +892,18 @@
             return `
                 <div class="admin-item">
                     <div class="flex items-center gap-3 w-[45%]">
-                        <img src="${g.photo}" onclick="window.open('${g.photo}', '_blank')" class="w-10 h-10 rounded-md object-cover cursor-pointer border border-[#222] hover:border-gold transition">
+                        <img src="${g.photo}" onclick="window.open('${g.photo}', '_blank')" class="w-10 h-10 rounded-xl object-cover cursor-pointer border border-cardBorder hover:border-gold transition">
                         <div class="text-xs truncate text-white">
-                            <b class="${g.isHidden ? 'opacity-40 line-through' : ''}">${g.name} <span class="area-tag !bg-transparent !border-0 opacity-50">[${g.area}]</span></b>
-                            <div class="text-[9px] text-gray-500">${g.isHidden ? '<span class="text-red-800">HIDDEN</span>' : '🔥 ' + g.clicks + ' clicks'}</div>
-                            <div class="text-[8px] text-gold/80 italic mt-0.5">🏨 ${g.hotel || 'No Hotel Set'}</div>
+                            <b class="${g.isHidden ? 'opacity-40 line-through' : ''}">${g.name} <span class="area-tag opacity-60">[${g.area}]</span></b>
+                            <div class="text-[10px] text-gray-500">${g.isHidden ? '<span class="text-red-400">HIDDEN</span>' : '🔥 ' + g.clicks + ' clicks'}</div>
+                            <div class="text-[9px] gold-text italic">🏨 ${g.hotel || 'No Hotel Set'}</div>
                         </div>
                     </div>
-                    <div class="flex gap-1 items-center">
-                        <button onclick="window.handleSetNew('${g.id}')" class="text-[9px] font-bold px-2 py-1.5 rounded bg-red-600 text-white hover:bg-red-500 transition">NEW</button>
-                        <button onclick="window.handleToggleVisibility('${g.id}', ${g.isHidden})" class="text-[9px] font-bold px-2 py-1.5 rounded transition ${g.isHidden ? 'bg-green-900/30 text-green-500' : 'bg-gray-800 text-gray-400'}">${g.isHidden ? 'SHOW' : 'HIDE'}</button>
-                        <button onclick="window.handleEdit('${g.id}')" class="text-blue-400 text-[9px] font-bold px-2 py-1.5 bg-blue-900/20 rounded">EDIT</button>
-                        <button onclick="window.handleDelete('${g.id}')" class="text-red-500 text-[9px] font-bold px-2 py-1.5 bg-red-900/20 rounded">DEL</button>
+                    <div class="flex gap-1.5 items-center">
+                        <button onclick="window.handleSetNew('${g.id}')" class="text-[9px] font-bold px-2 py-1.5 rounded-lg bg-red-600 text-white hover:bg-red-500 transition">NEW</button>
+                        <button onclick="window.handleToggleVisibility('${g.id}', ${g.isHidden})" class="text-[9px] font-bold px-2 py-1.5 rounded-lg transition ${g.isHidden ? 'bg-green-900/30 text-green-400 border border-green-500/30' : 'bg-cardBorder text-gray-400'}">${g.isHidden ? 'SHOW' : 'HIDE'}</button>
+                        <button onclick="window.handleEdit('${g.id}')" class="text-blue-400 text-[9px] font-bold px-2 py-1.5 bg-blue-900/20 border border-blue-500/30 rounded-lg">EDIT</button>
+                        <button onclick="window.handleDelete('${g.id}')" class="text-red-400 text-[9px] font-bold px-2 py-1.5 bg-red-900/20 border border-red-500/30 rounded-lg">DEL</button>
                     </div>
                 </div>`;
         }
@@ -783,6 +956,21 @@
             try { const res = await fetch(`https://api.imgbb.com/1/upload?key=${MY_IMGBB_API_KEY}`, { method: 'POST', body: formData }); const r = await res.json(); if (r.success) { await updateDoc(doc(db, "users", auth.currentUser.uid), { avatar: r.data.url }); } } catch (err) { alert("Upload failed."); } finally { container.classList.remove('uploading'); overlayText.innerText = "CHANGE"; }
         });
 
+        // 实时图片预览函数
+        window.updatePhotoPreview = (url) => {
+            const previewImg = document.getElementById('photoPreview');
+            const placeholder = document.getElementById('photoPlaceholder');
+            if (url && url.trim() !== '') {
+                previewImg.src = url;
+                previewImg.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            } else {
+                previewImg.src = '';
+                previewImg.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+            }
+        };
+
         async function uploadFile(file) {
             const status = document.getElementById('uploadStatus'); 
             status.innerText = "Uploading...";
@@ -794,6 +982,7 @@
                 if (r.success) { 
                     document.getElementById('gPhoto').value = r.data.url; 
                     status.innerText = "Success!"; 
+                    window.updatePhotoPreview(r.data.url);
                 } else {
                     status.innerText = "Upload failed: " + (r.error ? r.error.message : "Unknown error");
                 }
@@ -843,7 +1032,18 @@
 
     <script>
         function navigateTo(id) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
-        function openModal(isEdit = false) { if(!isEdit) { document.getElementById('editId').value = ""; document.getElementById('gPhoto').value = ""; document.getElementById('gName').value = ""; document.getElementById('gHotel').value = ""; if(typeof window.setPrice === 'function') window.setPrice(250); } document.getElementById('girlModal').classList.add('active'); }
+        function openModal(isEdit = false) { 
+            if(!isEdit) { 
+                document.getElementById('editId').value = ""; 
+                document.getElementById('gPhoto').value = ""; 
+                document.getElementById('gName').value = ""; 
+                document.getElementById('gHotel').value = ""; 
+                document.getElementById('gWhatsapp').value = ""; 
+                if(typeof window.setPrice === 'function') window.setPrice(250); 
+                if(typeof window.updatePhotoPreview === 'function') window.updatePhotoPreview(""); 
+            } 
+            document.getElementById('girlModal').classList.add('active'); 
+        }
         function closeModal() { document.getElementById('girlModal').classList.remove('active'); }
         window.openAuthModal = m => { authMode = m; document.getElementById('authTitle').innerText = m.toUpperCase(); document.getElementById('authBtn').innerText = m === 'login' ? 'Login' : 'Register'; document.getElementById('authToggleText').innerText = (m === 'login' ? "Switch to Register" : "Switch to Login"); document.getElementById('authModal').classList.add('active'); };
         window.closeAuthModal = () => document.getElementById('authModal').classList.remove('active');
