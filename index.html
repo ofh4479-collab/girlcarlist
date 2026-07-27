@@ -35,11 +35,9 @@
         .gold-border { border-color: #d4af37; }
         .gold-bg { background-color: #d4af37; }
         
-        /* 地区与筛选按钮 */
         .area-button { background: #1a1a1a; border: 1px solid #2a2a2a; transition: all 0.2s; cursor: pointer; font-size: 11px; padding: 8px 4px; border-radius: 12px; color: #aaa; }
         .area-button.active { background: rgba(212, 175, 55, 0.15); border-color: #d4af37; color: #d4af37; font-weight: bold; }
         
-        /* 卡片与卡片徽章 */
         .card { background: #1a1a1a; border-radius: 16px; overflow: hidden; border: 1px solid #2a2a2a; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column; shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); }
         .card:hover { border-color: rgba(212, 175, 55, 0.5); transform: translateY(-3px); }
         .card-img { width: 100%; height: 210px; object-fit: cover; background: #0f0f0f; border-bottom: 1px solid #2a2a2a; }
@@ -47,15 +45,12 @@
         .area-tag { font-size: 9px; background: #2a2a2a; color: #888; padding: 2px 6px; border-radius: 6px; border: 1px solid #333; margin-left: 4px; }
         .new-badge { position: absolute; top: 10px; left: 10px; background: #ef4444; color: #fff; font-size: 9px; padding: 2px 8px; border-radius: 6px; font-weight: 800; z-index: 11; box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4); }
         
-        /* 页面切换 */
         .page { display: none; min-height: 100vh; }
         .page.active { display: block; }
         
-        /* 遮罩弹窗 */
         .modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 500; align-items: center; justify-content: center; padding: 16px; }
         .modal.active { display: flex; }
         
-        /* 表单控件黑金统一优化 */
         input, select, textarea { background: #0f0f0f !important; border: 1px solid #2a2a2a !important; color: #fff !important; padding: 10px !important; border-radius: 12px !important; font-size: 12px !important; outline: none !important; transition: border-color 0.2s; }
         input:focus, select:focus, textarea:focus { border-color: #d4af37 !important; }
         .btn-preset { background: #2a2a2a; font-size: 11px; padding: 6px 10px; border-radius: 8px; color: #d4af37; border: 1px solid #3a3a3a; transition: 0.2s; }
@@ -89,12 +84,6 @@
         .admin-tab-btn { color: #666; font-size: 11px; font-weight: bold; padding: 6px 14px; cursor: pointer; border-radius: 8px; }
         .admin-tab-btn.active { color: #d4af37; background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); }
         
-        .comment-section { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 18px; padding: 18px; margin-top: 25px; }
-        .comment-input { background: #0f0f0f !important; border: 1px solid #2a2a2a !important; border-radius: 12px !important; padding: 12px !important; font-size: 12px !important; color: #fff !important; width: 100%; min-height: 80px; resize: none; }
-        .comment-item { padding: 12px 0; border-bottom: 1px solid #2a2a2a; }
-        .vote-btn { cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 11px; padding: 4px 10px; border-radius: 6px; background: #0f0f0f; border: 1px solid #2a2a2a; transition: 0.2s; }
-        .vote-btn.active { border-color: #d4af37; color: #d4af37; background: rgba(212, 175, 55, 0.1); }
-        
         .card-votes { position: absolute; bottom: 8px; right: 8px; display: flex; gap: 4px; z-index: 20; }
         .mini-vote { background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 6px; font-size: 10px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; }
         .mini-vote.active { border-color: #d4af37; color: #d4af37; background: rgba(212, 175, 55, 0.2); }
@@ -113,12 +102,15 @@
         .contact-icon.tg { background: #0088cc; }
         .contact-icon:hover { transform: translateY(-3px); }
 
-        .wa-sub-options { display: flex; flex-direction: column; gap: 8px; position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%) scale(0); transform-origin: bottom center; opacity: 0; pointer-events: none; transition: all 0.3s ease; }
-        .contact-icon.wa.sub-active .wa-sub-options { transform: translateX(-50%) scale(1); opacity: 1; pointer-events: auto; }
-        .wa-sub-btn { width: 38px; height: 38px; border-radius: 50%; background: #128C7E; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.5); border: 1px solid #25D366; text-decoration: none; }
+        .sub-options { display: flex; flex-direction: column; gap: 6px; position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%) scale(0); transform-origin: bottom center; opacity: 0; pointer-events: none; transition: all 0.3s ease; width: max-content; }
+        .contact-icon.sub-active .sub-options { transform: translateX(-50%) scale(1); opacity: 1; pointer-events: auto; }
+        
+        .sub-btn { padding: 4px 10px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.5); text-decoration: none; white-space: nowrap; }
+        .wa-sub-btn { background: #128C7E; border: 1px solid #25D366; }
         .wa-sub-btn:hover { background: #075E54; }
+        .tg-sub-btn { background: #006699; border: 1px solid #0088cc; }
+        .tg-sub-btn:hover { background: #004466; }
 
-        /* 图片URL链接文本省略显示 */
         .ellipsis-input { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
     </style>
 </head>
@@ -126,9 +118,9 @@
 
     <script>
         const translations = {
-            en: { home: "HOME", welcome: "Welcome to MoiCarList", subtitle: "Your Trusted Choice", available: "✨ Featured Listings", allNations: "All Nations", allCups: "All Cups", sortDefault: "Default (A-Z)", sortClicks: "Clicks (High to Low)", newOnly: "NEW Only", hotOnly: "Hot Only", back: "← BACK", booking: "WHATSAPP BOOKING", hot: "HOT", total: "Total", ovn: "Overnight", searchPlaceholder: "Search name...", profile: "PROFILE", points: "Points", checkin: "Check In", alreadyCheckin: "Already Checked In", changeNameTitle: "Modify Name (100 pts)", insufficient: "Insufficient points!", reviewTitle: "Reviews & Experience", post: "POST REVIEW", noReview: "No reviews yet. Be the first!", clicks: "Clicks" },
-            cn: { home: "首页", welcome: "欢迎来到 MoiCarList", subtitle: "您值得信赖的选择", available: "✨ 精选展示", allNations: "所有国籍", allCups: "所有胸围", sortDefault: "默认排序 (A-Z)", sortClicks: "点击量排序 (高到低)", newOnly: "NEW小姐", hotOnly: "人气小姐", back: "← 返回", booking: "WHATSAPP 预约", hot: "火热", total: "总计", ovn: "包夜", searchPlaceholder: "搜索名字...", profile: "个人中心", points: "积分", checkin: "每日签到", alreadyCheckin: "今日已签到", changeNameTitle: "修改名字 (消耗100积分)", insufficient: "积分不足！", reviewTitle: "用户真实评价", post: "发布评论", noReview: "暂无评价，快来抢沙发！", clicks: "查看次数" },
-            bm: { home: "UTAMA", welcome: "Selamat Datang", subtitle: "Pilihan Dipercayai", available: "✨ Pilihan Utama", allNations: "Semua Negara", allCups: "Semua Saiz", sortDefault: "Asal (A-Z)", sortClicks: "Klik (Tinggi ke Rendah)", newOnly: "Pilihan Baru", hotOnly: "Pilihan Hangat", back: "← KEMBALI", booking: "TEMPAHAN WHATSAPP", hot: "HANGAT", total: "Jumlah", ovn: "Bermalam", searchPlaceholder: "Cari nama...", profile: "PROFIL", points: "Mata", checkin: "Daftar Masuk", alreadyCheckin: "Sudah Daftar", changeNameTitle: "Tukar Nama (100 mata)", insufficient: "Mata tidak cukup!", reviewTitle: "Ulasan Pengguna", post: "HANTAR ULASAN", noReview: "Tiada ulasan lagi.", clicks: "Klik" }
+            en: { home: "HOME", welcome: "Welcome to MoiCarList", subtitle: "Your Trusted Choice", available: "✨ Featured Listings", allNations: "All Nations", allCups: "All Cups", sortDefault: "Default (A-Z)", sortClicks: "Clicks (High to Low)", newOnly: "NEW Only", hotOnly: "Hot Only", searchPlaceholder: "Search name..." },
+            cn: { home: "首页", welcome: "欢迎来到 MoiCarList", subtitle: "您值得信赖的选择", available: "✨ 精选展示", allNations: "所有国籍", allCups: "所有胸围", sortDefault: "默认排序 (A-Z)", sortClicks: "点击量排序 (高到低)", newOnly: "NEW小姐", hotOnly: "人气小姐", searchPlaceholder: "搜索名字..." },
+            bm: { home: "UTAMA", welcome: "Selamat Datang", subtitle: "Pilihan Dipercayai", available: "✨ Pilihan Utama", allNations: "Semua Negara", allCups: "Semua Saiz", sortDefault: "Asal (A-Z)", sortClicks: "Klik (Tinggi ke Rendah)", newOnly: "Pilihan Baru", hotOnly: "Pilihan Hangat", searchPlaceholder: "Cari nama..." }
         };
         const langLabels = { en: "EN", cn: "中", bm: "BM" };
         let currentLang = 'en';
@@ -141,7 +133,6 @@
             const sectT = document.getElementById('section-title'); if(sectT) sectT.innerText = t.available;
             const langB = document.getElementById('btn-lang-toggle'); if(langB) langB.innerText = langLabels[currentLang];
             const fSearch = document.getElementById('frontSearch'); if(fSearch) fSearch.placeholder = t.searchPlaceholder;
-            if (typeof window.renderEverything === "function") window.renderEverything();
         }
 
         function toggleLang() {
@@ -201,24 +192,23 @@
                 </div>
             </div>
             
-            <!-- 卡片 Grid -->
             <div id="displayList" class="grid grid-cols-2 md:grid-cols-4 gap-3.5"></div>
         </div>
     </div>
 
-    <!-- 悬浮联系方式控件 -->
+    <!-- 悬浮联系方式控件 (动态生成的子按钮) -->
     <div id="contactWidget" class="contact-widget">
         <div class="contact-options">
-            <a id="link-tg-main" href="https://t.me/moicarlist" target="_blank" class="contact-icon tg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"></a>
-            <div id="btn-wa-container" class="contact-icon wa" onclick="event.stopPropagation(); this.classList.toggle('sub-active')">
+            <div id="btn-tg-container" class="contact-icon tg" onclick="event.stopPropagation(); this.classList.toggle('sub-active'); document.getElementById('btn-wa-container').classList.remove('sub-active');">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg">
+                <div id="tg-sub-options" class="sub-options"></div>
+            </div>
+            <div id="btn-wa-container" class="contact-icon wa" onclick="event.stopPropagation(); this.classList.toggle('sub-active'); document.getElementById('btn-tg-container').classList.remove('sub-active');">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-                <div class="wa-sub-options">
-                    <a id="link-wa-main-1" href="https://wa.me/601117917032" target="_blank" class="wa-sub-btn" onclick="event.stopPropagation();">1</a>
-                    <a id="link-wa-main-2" href="https://wa.me/601117917032" target="_blank" class="wa-sub-btn" onclick="event.stopPropagation();">2</a>
-                </div>
+                <div id="wa-sub-options" class="sub-options"></div>
             </div>
         </div>
-        <div class="contact-main-btn" onclick="document.getElementById('contactWidget').classList.toggle('active'); document.getElementById('btn-wa-container').classList.remove('sub-active');">☎</div>
+        <div class="contact-main-btn" onclick="document.getElementById('contactWidget').classList.toggle('active'); document.getElementById('btn-wa-container').classList.remove('sub-active'); document.getElementById('btn-tg-container').classList.remove('sub-active');">☎</div>
     </div>
 
     <!-- 个人中心 View -->
@@ -280,7 +270,6 @@
                     <button onclick="window.handleBulkHide(false)" class="flex-1 bg-green-900/20 text-green-400 text-[10px] font-bold py-2.5 rounded-xl border border-green-500/30">SHOW AREA</button>
                 </div>
 
-                <!-- 新增：一键删除当前地区所有小姐按钮 -->
                 <div class="mb-4">
                     <button onclick="window.handleBatchDeleteArea()" class="w-full bg-red-600/30 hover:bg-red-600/50 text-red-400 text-[11px] font-bold py-3 rounded-xl border border-red-500/50 transition tracking-wide uppercase">⚠️ 一键删除当前地区所有小姐 (DELETE ALL IN AREA)</button>
                 </div>
@@ -298,23 +287,31 @@
                 <div id="adminReviewsList" class="space-y-2"></div>
             </div>
 
+            <!-- 后台全局设置：支持动态多条联系方式与名字 -->
             <div id="admin-settings-view" class="hidden">
                 <div class="bg-cardBg p-6 rounded-2xl border border-cardBorder">
-                    <h3 class="text-xs font-bold gold-text mb-4 uppercase tracking-wider">Update Contact Buttons</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="text-[10px] text-gray-400 block mb-1">Telegram Link (Full URL)</label>
-                            <input type="text" id="set-tg-link" placeholder="https://t.me/yourname" class="w-full">
+                    <h3 class="text-xs font-bold gold-text mb-4 uppercase tracking-wider">Dynamic Contact Settings</h3>
+                    <div class="space-y-6">
+                        
+                        <!-- Telegram 配置组 -->
+                        <div class="p-4 bg-darkBg border border-cardBorder rounded-xl">
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="text-xs text-sky-400 font-bold">Telegram 联系方式列表</label>
+                                <button type="button" onclick="window.addContactField('telegram')" class="bg-sky-900/40 text-sky-300 border border-sky-500/40 px-3 py-1 rounded-lg text-xs font-bold hover:bg-sky-900/70 transition">+ 添加新的联系方式</button>
+                            </div>
+                            <div id="telegram-fields-container" class="space-y-3"></div>
                         </div>
-                        <div>
-                            <label class="text-[10px] text-emerald-400 block mb-1">WhatsApp 1号号码 (大确权：同步更换所有小姐详情页联系号码)</label>
-                            <input type="text" id="set-wa-num" placeholder="60111xxxx" class="w-full">
+
+                        <!-- WhatsApp 配置组 -->
+                        <div class="p-4 bg-darkBg border border-cardBorder rounded-xl">
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="text-xs text-emerald-400 font-bold">WhatsApp 联系方式列表</label>
+                                <button type="button" onclick="window.addContactField('whatsapp')" class="bg-emerald-900/40 text-emerald-300 border border-emerald-500/40 px-3 py-1 rounded-lg text-xs font-bold hover:bg-emerald-900/70 transition">+ 添加新的联系方式</button>
+                            </div>
+                            <div id="whatsapp-fields-container" class="space-y-3"></div>
                         </div>
-                        <div>
-                            <label class="text-[10px] text-gray-400 block mb-1">WhatsApp 2号号码 (仅供右下角悬浮窗选择)</label>
-                            <input type="text" id="set-wa-num-2" placeholder="60111xxxx" class="w-full">
-                        </div>
-                        <button onclick="window.saveGlobalSettings()" class="btn-gold">Update Contacts</button>
+
+                        <button onclick="window.saveGlobalSettings()" class="btn-gold">Save All Dynamic Contacts</button>
                     </div>
                 </div>
             </div>
@@ -328,16 +325,13 @@
             <input type="hidden" id="editId">
             
             <div class="space-y-3">
-                <!-- 1. 图片上传区域（置顶且紧凑左右对齐） -->
                 <div class="p-3 bg-gold/10 border border-gold/30 rounded-2xl">
                     <label class="block text-gold text-[10px] font-bold mb-2">📸 封面海报图片 (拖拽/上传)</label>
                     <div class="flex items-center gap-3">
-                        <!-- 左侧：图片预览区 -->
                         <div id="photoPreviewContainer" class="w-20 h-24 bg-darkBg border border-gold/40 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center relative">
                             <img id="photoPreview" src="" class="w-full h-full object-cover hidden">
                             <span id="photoPlaceholder" class="text-[9px] text-gray-500 text-center px-1">无图片<br>No Img</span>
                         </div>
-                        <!-- 右侧：控制输入框与按钮 -->
                         <div class="flex-1 flex flex-col gap-1.5 min-w-0">
                             <div class="flex gap-1.5">
                                 <input type="text" id="gPhoto" placeholder="图片 URL..." class="m-0 flex-1 min-w-0 text-[11px] !py-1.5 !px-2 ellipsis-input" oninput="window.updatePhotoPreview(this.value)">
@@ -349,7 +343,6 @@
                     </div>
                 </div>
 
-                <!-- 2. 基本信息表单 -->
                 <div>
                     <label class="block text-gray-400 text-[10px] mb-1">名字 (Name)</label>
                     <input type="text" id="gName" placeholder="Name">
@@ -492,18 +485,10 @@
         </div>
     </div>
 
-    <!-- 纯照片展示 Lightbox 弹窗 (点击全局任意位置均自动关闭) -->
+    <!-- 纯照片展示 Lightbox 弹窗 -->
     <div id="photoLightboxModal" class="modal" onclick="window.closePhotoLightbox()">
         <div class="relative max-w-4xl max-h-[90vh] flex justify-center items-center p-2" onclick="window.closePhotoLightbox()">
             <img id="lightboxImg" src="" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-gold/30">
-        </div>
-    </div>
-
-    <!-- 详情页面 View (已作为备用保留) -->
-    <div id="detailPage" class="page">
-        <div class="max-w-xl mx-auto p-4 pb-20">
-            <div id="back-btn-text" class="mb-4 gold-text font-bold cursor-pointer text-xs flex items-center gap-1" onclick="navigateTo('home')">← BACK</div>
-            <div id="detailContent"></div>
         </div>
     </div>
 
@@ -532,44 +517,105 @@
         let authMode = 'login';
         let adminSortBy = 'az';
 
-        let globalWhatsApp = "";
-        let globalWhatsApp2 = "";
+        let globalTelegramList = [];
+        let globalWhatsAppList = [];
 
-        // 全局联系方式监听
+        // 渲染后台动态联系方式输入行
+        function renderAdminContactInputs(type, items) {
+            const container = document.getElementById(`${type}-fields-container`);
+            if(!container) return;
+            container.innerHTML = items.map((item, index) => `
+                <div class="flex items-center gap-2 bg-cardBg p-2.5 rounded-xl border border-cardBorder contact-row" data-type="${type}" data-index="${index}">
+                    <div class="flex-1">
+                        <label class="text-[9px] text-gray-400 block mb-1">名字 [${index + 1}]</label>
+                        <input type="text" class="c-label w-full !py-1.5" value="${item.label || ''}" placeholder="例如: 客服A / 备用1">
+                    </div>
+                    <div class="flex-1">
+                        <label class="text-[9px] text-gray-400 block mb-1">链接 / 号码 [${index + 1}]</label>
+                        <input type="text" class="c-val w-full !py-1.5" value="${item.value || ''}" placeholder="${type === 'telegram' ? 'https://t.me/...' : '60111xxxx'}">
+                    </div>
+                    <button type="button" onclick="window.removeContactField('${type}', ${index})" class="text-red-400 text-xs font-bold px-2.5 py-1.5 bg-red-900/30 rounded-lg hover:bg-red-900/60 transition self-end mb-0.5">✕</button>
+                </div>
+            `).join('');
+        }
+
+        window.addContactField = (type) => {
+            if(type === 'telegram') {
+                globalTelegramList.push({ label: `客服 ${globalTelegramList.length + 1}`, value: '' });
+                renderAdminContactInputs('telegram', globalTelegramList);
+            } else {
+                globalWhatsAppList.push({ label: `客服 ${globalWhatsAppList.length + 1}`, value: '' });
+                renderAdminContactInputs('whatsapp', globalWhatsAppList);
+            }
+        };
+
+        window.removeContactField = (type, index) => {
+            if(type === 'telegram') {
+                globalTelegramList.splice(index, 1);
+                renderAdminContactInputs('telegram', globalTelegramList);
+            } else {
+                globalWhatsAppList.splice(index, 1);
+                renderAdminContactInputs('whatsapp', globalWhatsAppList);
+            }
+        };
+
+        // 实时监听全局配置
         onSnapshot(doc(db, "settings", "contact"), (docSnap) => {
             if(docSnap.exists()){
                 const data = docSnap.data();
-                
-                globalWhatsApp = data.whatsapp || "";
-                globalWhatsApp2 = data.whatsapp2 || "";
-
-                const tgLink = data.telegram || "https://t.me/moicarlist";
-                const waLink1 = `https://wa.me/${globalWhatsApp || ""}`;
-                const waLink2 = `https://wa.me/${globalWhatsApp2 || ""}`;
-                
-                const tgMain = document.getElementById('link-tg-main');
-                const waMain1 = document.getElementById('link-wa-main-1');
-                const waMain2 = document.getElementById('link-wa-main-2');
-                if(tgMain) tgMain.href = tgLink;
-                if(waMain1) waMain1.href = waLink1;
-                if(waMain2) waMain2.href = waLink2;
-
-                const tgInput = document.getElementById('set-tg-link');
-                const waInput = document.getElementById('set-wa-num');
-                const waInput2 = document.getElementById('set-wa-num-2');
-                if(tgInput) tgInput.value = data.telegram || "";
-                if(waInput) waInput.value = globalWhatsApp;
-                if(waInput2) waInput2.value = globalWhatsApp2;
+                globalTelegramList = data.telegramList || [{ label: "1", value: "https://t.me/moicarlist" }, { label: "2", value: "https://t.me/moicarlist" }];
+                globalWhatsAppList = data.whatsappList || [{ label: "1", value: "601117917032" }, { label: "2", value: "601117917032" }];
+            } else {
+                globalTelegramList = [{ label: "1", value: "https://t.me/moicarlist" }, { label: "2", value: "https://t.me/moicarlist" }];
+                globalWhatsAppList = [{ label: "1", value: "601117917032" }, { label: "2", value: "601117917032" }];
             }
+
+            // 同步渲染前台悬浮窗子按钮
+            const tgSubContainer = document.getElementById('tg-sub-options');
+            const waSubContainer = document.getElementById('wa-sub-options');
+            
+            if(tgSubContainer) {
+                tgSubContainer.innerHTML = globalTelegramList.map(item => `
+                    <a href="${item.value}" target="_blank" class="sub-btn tg-sub-btn" onclick="event.stopPropagation();">${item.label}</a>
+                `).join('');
+            }
+            if(waSubContainer) {
+                waSubContainer.innerHTML = globalWhatsAppList.map(item => `
+                    <a href="https://wa.me/${item.value}" target="_blank" class="sub-btn wa-sub-btn" onclick="event.stopPropagation();">${item.label}</a>
+                `).join('');
+            }
+
+            // 同步渲染后台输入表单
+            renderAdminContactInputs('telegram', globalTelegramList);
+            renderAdminContactInputs('whatsapp', globalWhatsAppList);
         });
 
         window.saveGlobalSettings = async () => {
-            const tg = document.getElementById('set-tg-link').value;
-            const wa = document.getElementById('set-wa-num').value;
-            const wa2 = document.getElementById('set-wa-num-2').value;
+            // 从DOM抓取最新输入内容
+            const tgRows = document.querySelectorAll('#telegram-fields-container .contact-row');
+            const newTgList = [];
+            tgRows.forEach(row => {
+                newTgList.push({
+                    label: row.querySelector('.c-label').value,
+                    value: row.querySelector('.c-val').value
+                });
+            });
+
+            const waRows = document.querySelectorAll('#whatsapp-fields-container .contact-row');
+            const newWaList = [];
+            waRows.forEach(row => {
+                newWaList.push({
+                    label: row.querySelector('.c-label').value,
+                    value: row.querySelector('.c-val').value
+                });
+            });
+
             try {
-                await setDoc(doc(db, "settings", "contact"), { telegram: tg, whatsapp: wa, whatsapp2: wa2 }, { merge: true });
-                alert("Contacts updated successfully!");
+                await setDoc(doc(db, "settings", "contact"), { 
+                    telegramList: newTgList,
+                    whatsappList: newWaList
+                }, { merge: true });
+                alert("Dynamic contacts updated successfully!");
             } catch(e) { console.error(e); alert("Update failed."); }
         };
 
@@ -660,31 +706,12 @@
             else if(tab === 'settings') { settingsTab.classList.add('active'); settingsView.classList.remove('hidden'); }
         };
 
-        window.submitComment = async (girlId) => {
-            if (!auth.currentUser) { window.openAuthModal('login'); return; }
-            const text = document.getElementById('commentText').value.trim(); if (!text) return;
-            const now = Date.now(); const COOL_DOWN = 3 * 60 * 1000;
-            const lastTimeLocal = localStorage.getItem(`lastPost_${auth.currentUser.uid}`);
-            if (lastTimeLocal && (now - lastTimeLocal < COOL_DOWN)) { alert(`Please wait.`); return; }
-            try { await addDoc(collection(db, "comments"), { girlId, uid: auth.currentUser.uid, username: currentUserData.username, avatar: currentUserData.avatar || "", text, likes: 0, dislikes: 0, createdAt: now }); localStorage.setItem(`lastPost_${auth.currentUser.uid}`, now); await updateDoc(doc(db, "users", auth.currentUser.uid), { lastCommentAt: now }); document.getElementById('commentText').value = ""; alert("Review posted!"); } catch (err) { console.error(err); }
-        };
-
         window.handleVote = async (targetId, type, authorUid, collectionName = "comments") => {
             if (!auth.currentUser) { window.openAuthModal('login'); return; }
             const voteDocId = `${auth.currentUser.uid}_${targetId}`; const voteRef = doc(db, "votes", voteDocId);
             const targetRef = doc(db, collectionName, targetId); const existingVote = userVotes[targetId];
             try { if (existingVote === type) { await deleteDoc(voteRef); await updateDoc(targetRef, { [type === 'like' ? 'likes' : 'dislikes']: increment(-1) }); } else { if (existingVote) await updateDoc(targetRef, { [existingVote === 'like' ? 'likes' : 'dislikes']: increment(-1) }); await setDoc(voteRef, { uid: auth.currentUser.uid, targetId: targetId, type: type }); await updateDoc(targetRef, { [type === 'like' ? 'likes' : 'dislikes']: increment(1) }); } } catch (e) { console.error(e); }
         };
-
-        function listenToComments(girlId) {
-            const q = query(collection(db, "comments"), where("girlId", "==", girlId));
-            onSnapshot(q, (snapshot) => {
-                const container = document.getElementById('commentsList'); if (!container) return;
-                const comments = snapshot.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => b.createdAt - a.createdAt);
-                if (comments.length === 0) { container.innerHTML = `<p class="text-[10px] text-gray-500 text-center py-4 italic">No reviews yet.</p>`; return; }
-                container.innerHTML = comments.map(c => `<div class="comment-item"><div class="flex gap-3"><img src="${c.avatar || 'https://via.placeholder.com/30/222/d4af37?text=👤'}" class="w-7 h-7 rounded-full border border-gold/30 object-cover"><div class="flex-1"><div class="flex justify-between items-center mb-1"><span class="text-[11px] font-bold gold-text">${c.username}</span><span class="text-[9px] text-gray-500">${new Date(c.createdAt).toLocaleDateString()}</span></div><p class="text-xs text-gray-300 leading-relaxed">${c.text}</p><div class="flex gap-3 mt-2"><div onclick="window.handleVote('${c.id}', 'like', '${c.uid}', 'comments')" class="vote-btn ${userVotes[c.id] === 'like' ? 'active' : ''}">👍 ${c.likes||0}</div><div onclick="window.handleVote('${c.id}', 'dislike', '${c.uid}', 'comments')" class="vote-btn ${userVotes[c.id] === 'dislike' ? 'active' : ''}">👎 ${c.dislikes||0}</div></div></div></div></div>`).join('');
-            });
-        }
 
         onSnapshot(colRef, (snapshot) => {
             allData = snapshot.docs.map(d => ({ id: d.id, ...d.data(), clicks: d.data().clicks || 0, likes: d.data().likes || 0, dislikes: d.data().dislikes || 0, isHidden: d.data().isHidden === "true" || d.data().isHidden === true, createdAt: d.data().createdAt || 0 })).sort((a, b) => (a.name || "").localeCompare(b.name || ""));
@@ -736,11 +763,9 @@
             checkCheckInStatus();
         };
 
-        /* 纯黑金质感卡片渲染 */
         function renderMain(displayData) {
             const now = Date.now(); 
             const THREE_DAYS_MS = 3 * 24 * 60 * 60 * 1000;
-            const t = translations[currentLang];
             
             document.getElementById('displayList').innerHTML = displayData.map((g) => {
                 const isNew = g.createdAt && (now - g.createdAt < THREE_DAYS_MS);
@@ -774,15 +799,12 @@
             }).join('');
         }
 
-        /* 修改后的点击显示逻辑：直接展示大图 Modal (点击任何地方关闭) */
         window.showDetail = async id => {
             const g = allData.find(x => x.id === id); 
             if (!g) return;
             await updateDoc(doc(db, "girls", id), { clicks: increment(1) }); 
-            
             const lightboxImg = document.getElementById('lightboxImg');
             lightboxImg.src = g.photo || 'https://via.placeholder.com/400/1a1a1a/d4af37?text=No+Photo';
-            
             document.getElementById('photoLightboxModal').classList.add('active');
         };
 
@@ -808,41 +830,22 @@
         window.handleEdit = id => {
             const g = allData.find(x => x.id === id); openModal(true);
             document.getElementById('editId').value = g.id; document.getElementById('gName').value = g.name; document.getElementById('gAge').value = g.age; document.getElementById('gNation').value = g.nation; document.getElementById('gCup').value = g.cup; document.getElementById('gHeight').value = g.height; document.getElementById('gPrice1').value = g.p1; document.getElementById('gPriceOvn').value = g.povn || ""; document.getElementById('gArea').value = g.area; document.getElementById('gStatus').value = g.status; document.getElementById('gIsHidden').value = g.isHidden ? "true" : "false"; document.getElementById('gPhoto').value = g.photo; document.getElementById('gWhatsapp').value = g.whatsapp || ""; document.getElementById('gDesc').value = g.desc; document.getElementById('gHotel').value = g.hotel || "";
-            // 更新预览图片
             window.updatePhotoPreview(g.photo);
         };
 
         window.handleToggleVisibility = async (id, currentStatus) => { await updateDoc(doc(db, "girls", id), { isHidden: !currentStatus }); };
         window.handleDelete = async id => { if(confirm('Delete?')) await deleteDoc(doc(db, "girls", id)); };
 
-        // 一键删除当前地区所有小姐的核心函数（带有双重确认防护）
         window.handleBatchDeleteArea = async () => {
             const targetList = allData.filter(g => g.area === currentArea);
-            if (targetList.length === 0) {
-                alert(`当前地区 [${currentArea}] 没有任何小姐数据。`);
-                return;
-            }
-            
-            // 第一次确认
-            const firstConfirm = confirm(`【高风险警告】\n您即将清空当前地区 [${currentArea}] 的所有小姐档案，共计 ${targetList.length} 位！\n此操作不可恢复，是否继续？`);
-            if (!firstConfirm) return;
-
-            // 第二次确定输入或选择（双重防点错）
+            if (targetList.length === 0) { alert(`当前地区 [${currentArea}] 没有任何小姐数据。`); return; }
+            if (!confirm(`【高风险警告】\n您即将清空当前地区 [${currentArea}] 的所有小姐档案，共计 ${targetList.length} 位！\n此操作不可恢复，是否继续？`)) return;
             const secondConfirm = prompt(`为防止误操作，请输入当前地区名称 [${currentArea}] 以确认删除：`);
-            if (secondConfirm !== currentArea) {
-                alert("输入的地区名称不匹配，已取消删除操作。");
-                return;
-            }
-
+            if (secondConfirm !== currentArea) { alert("输入的地区名称不匹配，已取消删除操作。"); return; }
             try {
-                for (let g of targetList) {
-                    await deleteDoc(doc(db, "girls", g.id));
-                }
+                for (let g of targetList) { await deleteDoc(doc(db, "girls", g.id)); }
                 alert(`成功删除 [${currentArea}] 的所有小姐档案！`);
-            } catch (err) {
-                console.error(err);
-                alert("批量删除过程中出现错误，请检查控制台。");
-            }
+            } catch (err) { console.error(err); alert("批量删除出现错误。"); }
         };
 
         window.handleSetNew = async (id) => { if(confirm("Set this profile as NEW? (Valid for 3 days)")) { await updateDoc(doc(db, "girls", id), { createdAt: Date.now() }); alert("Set successfully!"); } };
@@ -876,7 +879,6 @@
                     if (!grouped[g.area]) grouped[g.area] = [];
                     grouped[g.area].push(g);
                 });
-                
                 let html = "";
                 Object.keys(grouped).sort().forEach(area => {
                     html += `<div class="admin-area-divider">---- ${area} ----</div>`;
@@ -956,7 +958,6 @@
             try { const res = await fetch(`https://api.imgbb.com/1/upload?key=${MY_IMGBB_API_KEY}`, { method: 'POST', body: formData }); const r = await res.json(); if (r.success) { await updateDoc(doc(db, "users", auth.currentUser.uid), { avatar: r.data.url }); } } catch (err) { alert("Upload failed."); } finally { container.classList.remove('uploading'); overlayText.innerText = "CHANGE"; }
         });
 
-        // 实时图片预览函数
         window.updatePhotoPreview = (url) => {
             const previewImg = document.getElementById('photoPreview');
             const placeholder = document.getElementById('photoPlaceholder');
@@ -984,11 +985,10 @@
                     status.innerText = "Success!"; 
                     window.updatePhotoPreview(r.data.url);
                 } else {
-                    status.innerText = "Upload failed: " + (r.error ? r.error.message : "Unknown error");
+                    status.innerText = "Upload failed";
                 }
             } catch (err) { 
                 status.innerText = "Error during upload!"; 
-                console.error(err);
             }
         }
 
@@ -1013,11 +1013,7 @@
             const files = dt.files;
             if (files && files.length > 0) {
                 const file = files[0];
-                if (file.type.startsWith('image/')) {
-                    uploadFile(file);
-                } else {
-                    alert("Please drop an image file.");
-                }
+                if (file.type.startsWith('image/')) uploadFile(file);
             }
         }, false);
 
